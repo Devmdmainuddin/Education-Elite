@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import useAuth from '../../hooks/useAuth';
 import avatarImg from '../../assets/user-profile.png'
+import logo from'../../assets/logo-12.png'
+
 const Navbar = () => {
     const { user, logOut } = useAuth()
     const [isOpen, setIsOpen] = useState(false)
@@ -17,10 +19,11 @@ const Navbar = () => {
               <Link to='/'>
                 <img
                   // className='hidden md:block'
-                  src='https://i.ibb.co/4ZXzmq5/logo.png'
+                  src={logo}
                   alt='logo'
-                  width='100'
-                  height='100'
+                  width='60'
+                  height='60'
+                 className=' rounded-full'
                 />
               </Link>
               {/* Dropdown Menu */}

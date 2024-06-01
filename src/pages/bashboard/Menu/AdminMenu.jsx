@@ -15,11 +15,11 @@ const AdminMenu = () => {
       <MenuItem 
       icon={FaUserCog} 
       label='Manage Scholearships' 
-      address='manage-scholearships' />
+      address='manage-scholarship' />
       <MenuItem 
       icon={FaUserCog} 
       label='Manage Applied Application' 
-      address='applied-scholarship' />
+      address='manage-Applied-Application' />
       <MenuItem 
       icon={FaUserCog} 
       label='Manage Users' 
@@ -27,7 +27,7 @@ const AdminMenu = () => {
       <MenuItem 
       icon={FaUserCog} 
       label='Manage Review' 
-      address='manage-Review' />
+      address='manage-Reviews' />
     </>
   )
 }

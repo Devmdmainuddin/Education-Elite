@@ -14,7 +14,7 @@ import {
 import { app } from '../firebase/firebase.config'
 // import axios from 'axios'
 import useAxiosCommon from '../hooks/useAxiosCommon'
-import axios from 'axios'
+// import axios from 'axios'
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
@@ -68,15 +68,26 @@ const AuthProvider = ({ children }) => {
   // }
 
   // save user
-  const saveUser = async user =>{
-    const currentUser= {
-      email:user?.email,
-      role:'guest',
-      status:'verified',
-    }
-    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`,currentUser)
-    return data
-  }
+  // const saveUser = async userdata => {
+
+  //   console.log(userdata);
+  //   console.log(userdata.email);
+  //   console.log(userdata.displayName);
+
+
+  //   const currentUser = {
+  //     name: userdata?.displayName,
+  //     name2:user?.displayName,
+  //     email: userdata?.email,
+  //     role: 'user',
+  //     status: 'verified',
+  //   }
+  //   console.log(currentUser.name2);
+  //   const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
+  //   return data
+  // }
+
+
   // onAuthStateChange
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -84,8 +95,25 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail }
       setUser(currentUser)
 
+      const userinfo = {
+        name: currentUser?.displayName,
+        email: currentUser?.email,
+        role: 'user',
+        status: 'verified',
+      }
+
       if (currentUser) {
-        saveUser(currentUser)
+        console.log(currentUser);
+
+
+        axiosCommon.put(`${import.meta.env.VITE_API_URL}/user`, userinfo)
+          .then(res => {
+            console.log(res.data);
+          })
+
+
+
+
         axiosCommon.post(`/jwt`, loggedUser)
           .then(res => {
             if (res.data.token) {

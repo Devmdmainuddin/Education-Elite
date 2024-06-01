@@ -9,7 +9,7 @@ import { useState } from "react";
 import GuestMenu from "./bashboard/Menu/GuestMenu";
 import AdminMenu from './bashboard/Menu/AdminMenu'
 import useRole from "../hooks/useRole";
-
+import logo from'../assets/logo-12.png'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
@@ -25,7 +25,8 @@ const Sidebar = () => {
               <Link to='/'>
                 <img
                   // className='hidden md:block'
-                  src='https://i.ibb.co/4ZXzmq5/logo.png'
+                  // src='https://i.ibb.co/4ZXzmq5/logo.png'
+                  src={logo}
                   alt='logo'
                   width='100'
                   height='100'
@@ -49,11 +50,12 @@ const Sidebar = () => {
         >
           <div>
             <div>
-              <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+              <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-[#a2f3ba35] mx-auto'>
                 <Link to='/'>
                   <img
                     // className='hidden md:block'
-                    src='https://i.ibb.co/4ZXzmq5/logo.png'
+                    // src='https://i.ibb.co/4ZXzmq5/logo.png'
+                    src={logo}
                     alt='logo'
                     width='100'
                     height='100'
@@ -76,7 +78,7 @@ const Sidebar = () => {
                   icon={BsGraphUp}>
   
                 </MenuItem>
-                {role === 'guest' && <GuestMenu/>}
+                {role === 'user' && <GuestMenu/>}
                 {role === 'moderator' && <ModeratorMenu/>}
                 {role === 'admin' && <AdminMenu/>}
               </nav>
