@@ -3,14 +3,41 @@ import { FaCaravan, FaCartArrowDown } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 // import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const SholarshipDetails = () => {
     const { user } = useAuth() || {}
+    const axiosSecure = useAxiosSecure()
+    // const navigare =useNavigate()
     const sholarship = useLoaderData();
     console.log(sholarship);
+
+
+
+    const { mutateAsync } = useMutation({
+
+        mutationFn: async reviewData => {
+            const { data } = await axiosSecure.post(`/reviews`, reviewData)
+            console.log(data);
+            return data
+        },
+        onSuccess: () => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your review has been added",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.log("data add successfully")
+        }
+    })
+
     const handleReviews = async (e) => {
         e.preventDefault();
-        
+
         const form = e.target;
         const rating = form.rating.value
         const comments = form.Comments.value
@@ -21,7 +48,7 @@ const SholarshipDetails = () => {
         const reviewerName = user.displayName;
         const reviewDate = (new Date()).toDateString();
 
-        const info = { 
+        const reviewData = {
             sholarshipId,
             sholarshipUniversity,
             sholarshipcategory,
@@ -30,9 +57,14 @@ const SholarshipDetails = () => {
             reviewerImage,
             reviewerName,
             reviewDate,
-         };
-       console.log(info);
+        };
 
+        try {
+            await mutateAsync(reviewData)
+        }
+        catch (err) {
+            console.log(err);
+        }
 
         // try {
         //     if (user.email !== autherEmail) {
@@ -85,10 +117,10 @@ const SholarshipDetails = () => {
 
     return (
         <div>
-             <Helmet>
-				<title>Education Elite | SholarshipDetails </title>
-			</Helmet>
-           
+            <Helmet>
+                <title>Education Elite | SholarshipDetails </title>
+            </Helmet>
+
             <div className="bg-gray-100 dark:bg-gray-800 py-8">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row -mx-4">
@@ -100,7 +132,7 @@ const SholarshipDetails = () => {
                                 <div className="w-1/2 px-2">
                                     <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div className="md:flex-1 px-4">
@@ -191,29 +223,29 @@ const SholarshipDetails = () => {
                 <form onSubmit={handleReviews} className='mt-12 max-w-[768px] mx-auto'>
                     <div className="flex gap-8 ">
                         <div className="flex-1 items-start">
-                        <label
-              className="block mt-4 mb-2 dark:text-white"
-              htmlFor="rating"
-            >
-              Rating
-            </label>
-            <input
-              className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
-              maxLength={5}
-              max={5}
-              min={0}
-              type="number"
-              placeholder="Enter Rating"
-              id="rating"
-              name="rating"
-            />
+                            <label
+                                className="block mt-4 mb-2 dark:text-white"
+                                htmlFor="rating"
+                            >
+                                Rating
+                            </label>
+                            <input
+                                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                                maxLength={5}
+                                max={5}
+                                min={0}
+                                type="number"
+                                placeholder="Enter Rating"
+                                id="rating"
+                                name="rating"
+                            />
 
-                           
 
-            </div>
+
+                        </div>
 
                         <div className="flex-1">
-                            
+
                             <label className="block mb-2 mt-4 dark:text-white" htmlFor="Comments">Comments</label>
                             <textarea
                                 className="w-full p-2 resize-none border rounded-md focus:border-teal-500 focus:outline-none"
@@ -233,7 +265,7 @@ const SholarshipDetails = () => {
                 </form>
             </div>
 
-             {/* ......................show review....................... */}
+            {/* ......................show review....................... */}
 
 
 
