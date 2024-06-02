@@ -12,6 +12,7 @@ import ManageAppliedApplication from "../pages/bashboard/Admin/ManageAppliedAppl
 import ManageReview from "../pages/bashboard/Admin/ManageReview";
 import Home from "../pages/Home/Home";
 import SholarshipDetails from "../pages/details/SholarshipDetails";
+import Payment from "../pages/payment/Payment";
 
 
 
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         path: "/ScholarShip/:id",
         element: <SholarshipDetails />,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
 
     ],

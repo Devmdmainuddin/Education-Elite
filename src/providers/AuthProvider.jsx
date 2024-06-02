@@ -89,24 +89,24 @@ const AuthProvider = ({ children }) => {
 
 
   // onAuthStateChange
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       const userEmail = currentUser?.email || user?.email;
       const loggedUser = { email: userEmail }
       setUser(currentUser)
-
+      console.log(currentUser?.displayName);
       const userinfo = {
-        name: currentUser?.displayName || user?.displayName,
+        name: currentUser?.displayName,
         email: currentUser?.email,
         role: 'user',
         status: 'verified',
       }
 
       if (currentUser) {
-        console.log(currentUser);
+        // console.log(currentUser);
 
-
-        axiosCommon.put(`${import.meta.env.VITE_API_URL}/user`, userinfo)
+        axiosCommon.put(`/user`, userinfo)
           .then(res => {
             console.log(res.data);
           })

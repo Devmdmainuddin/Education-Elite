@@ -1,26 +1,42 @@
 import { Helmet } from "react-helmet-async";
 import { FaCaravan, FaCartArrowDown } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 // import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useReviews from "../../hooks/useReviews";
+import { useEffect, useState } from "react";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+// import required modules
+import { Pagination, Autoplay } from 'swiper/modules';
+
 
 const SholarshipDetails = () => {
     const { user } = useAuth() || {}
     const axiosSecure = useAxiosSecure()
-    // const navigare =useNavigate()
+    const [reviews, loading, refetch] = useReviews()
     const sholarship = useLoaderData();
-    console.log(sholarship);
+    const [userReview, setuserReview] = useState([])
+
+    useEffect(() => {
+        const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)
+        refetch()
+        setuserReview(filteritems)
+
+    }, [reviews, sholarship,refetch])
 
 
-
+    
     const { mutateAsync } = useMutation({
-
         mutationFn: async reviewData => {
             const { data } = await axiosSecure.post(`/reviews`, reviewData)
-            console.log(data);
             return data
         },
         onSuccess: () => {
@@ -115,6 +131,7 @@ const SholarshipDetails = () => {
 
     };
 
+    if (loading) return <LoadingSpinner />
     return (
         <div>
             <Helmet>
@@ -130,7 +147,7 @@ const SholarshipDetails = () => {
                             </div>
                             <div className="flex -mx-2 mb-4 justify-center">
                                 <div className="w-1/2 px-2">
-                                    <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button>
+                                 <Link to='/payment'> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>  
                                 </div>
 
                             </div>
@@ -267,7 +284,90 @@ const SholarshipDetails = () => {
 
             {/* ......................show review....................... */}
 
+            <Swiper
+                //  direction={'vertical'}
+                loop={true}
+                slidesPerView={1}
+                spaceBetween={1}
+                breakpoints={{
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 24,
+                    },
 
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                modules={[Pagination, Autoplay]}
+                className="Swiper h-[442px]  w-full "
+            >
+                {
+                    userReview.map(review =>
+                        <SwiperSlide key={review._id} className='flex justify-center items-center gap-x-4'>
+                            {/* {review.comments} */}
+                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8 ">
+                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
+                                <div className="pl-4 pt-4 flex items-start justify-between">
+                                    <div className="mr-6">
+                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Anna Smith</p>
+                                    </div>
+                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-1.png" alt="Display Avatar of Anna Smith" role="img" />
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    )
+                }
+
+                {/* <SwiperSlide>
+                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
+                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
+                                <div className="pl-4 pt-4 flex items-start justify-between">
+                                    <div className="mr-6">
+                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Dany John</p>
+                                    </div>
+                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-2.png" alt="Display avatar of Dany John" role="img" />
+                                </div>
+                            </div>
+                        
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
+                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
+                                <div className="pl-4 pt-4 flex items-start justify-between">
+                                    <div className="mr-6">
+                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Anna Smith</p>
+                                    </div>
+                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-1.png" alt="Display Avatar of Anna Smith" role="img" />
+                                </div>
+                            </div>
+                          
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
+                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
+                                <div className="pl-4 pt-4 flex items-start justify-between">
+                                    <div className="mr-6">
+                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Mike Blake</p>
+                                    </div>
+                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-3.png" alt="Display Avatar of Mike Blake" role="img" />
+                                </div>
+                            </div>
+                        </SwiperSlide> */}
+
+            </Swiper>
 
 
 
