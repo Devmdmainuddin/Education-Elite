@@ -29,6 +29,7 @@ const SholarshipDetails = () => {
         const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)
         refetch()
         setuserReview(filteritems)
+        refetch()
 
     }, [reviews, sholarship,refetch])
 
@@ -147,7 +148,7 @@ const SholarshipDetails = () => {
                             </div>
                             <div className="flex -mx-2 mb-4 justify-center">
                                 <div className="w-1/2 px-2">
-                                 <Link to='/payment'> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>  
+                                 <Link to={`/chackout/${sholarship._id}`}> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>  
                                 </div>
 
                             </div>
