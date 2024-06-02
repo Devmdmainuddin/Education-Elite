@@ -71,13 +71,11 @@ const Sidebar = () => {
   
               {/*  Menu Items */}
               <nav>
-                {/* Statistics */}
-                <MenuItem
-                  label='Statistics'
-                  address='/Dashboard'
-                  icon={BsGraphUp}>
-  
-                </MenuItem>
+              <MenuItem
+              label='Profile'
+              address='dashboard/profile'
+              icon={FcSettings}>
+            </MenuItem>
                 {role === 'user' && <GuestMenu/>}
                 {role === 'moderator' && <ModeratorMenu/>}
                 {role === 'admin' && <AdminMenu/>}
@@ -86,15 +84,7 @@ const Sidebar = () => {
           </div>
   
           <div>
-            <hr />
-  
-            {/* Profile Menu */}
-            <MenuItem
-              label='Profile'
-              address='dashboard/profile'
-              icon={FcSettings}>
-            </MenuItem>
-  
+         
             <button
               onClick={logOut}
               className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'

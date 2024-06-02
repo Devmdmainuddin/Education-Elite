@@ -3,7 +3,7 @@ import AddScholarShipForm from '../../../components/Dashboard/Form/AddScholarShi
 const AddScholarShip = () => {
     return (
         <div>
-            <h2 className="text-3xl text-center font-normal">Add Scholarship</h2>
+           
             <div>
                 <AddScholarShipForm/>
             </div>

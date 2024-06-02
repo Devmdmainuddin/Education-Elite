@@ -1,14 +1,10 @@
 
 import { MdHomeWork, MdOutlineManageHistory } from 'react-icons/md'
 import MenuItem from './MenuItem'
-import { FcSettings } from 'react-icons/fc';
 const ModeratorMenu = () => {
   return (
     <>
-      <MenuItem
-        label='Profile'
-        address='dashboard/profile'
-        icon={FcSettings} />
+     
       <MenuItem 
       icon={MdHomeWork} 
       label='Manage Scholearships' 

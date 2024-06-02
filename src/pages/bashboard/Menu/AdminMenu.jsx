@@ -4,10 +4,7 @@ import MenuItem from './MenuItem'
 const AdminMenu = () => {
   return (
     <>
-      <MenuItem 
-      icon={FaUserCog} 
-      label='Profile' 
-      address='dashboard/profile' />
+ 
       <MenuItem 
       icon={FaUserCog} 
       label='Add Scholarship' 

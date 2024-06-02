@@ -10,6 +10,8 @@ import AddScholarShip from "../pages/bashboard/Admin/AddScholarShip";
 import ManageScholerShips from "../pages/bashboard/Admin/ManageScholerShips";
 import ManageAppliedApplication from "../pages/bashboard/Admin/ManageAppliedApplication";
 import ManageReview from "../pages/bashboard/Admin/ManageReview";
+import Home from "../pages/Home/Home";
+import SholarshipDetails from "../pages/details/SholarshipDetails";
 
 
 
@@ -20,6 +22,10 @@ export const router = createBrowserRouter([
      errorElement: <ErrorPage />,
      children: [
       {
+        path: "/",
+        element: <Home />,
+      },
+      {
         path: "/signup",
         element: <SignUp />,
       },
@@ -27,6 +33,12 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/ScholarShip/:id",
+        element: <SholarshipDetails />,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
+      },
+
     ],
     },
     {

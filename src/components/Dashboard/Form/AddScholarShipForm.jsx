@@ -8,7 +8,7 @@ const AddScholarShipForm = () => {
     const { register, handleSubmit } = useForm();
     // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
-    const {user}=useAuth()
+    const { user , loading} = useAuth() || {}
 
     const onSubmit = async data => {
         const image_url = await imageUpload(data.image[0])
@@ -18,8 +18,11 @@ const AddScholarShipForm = () => {
             ScholarshipName: data.ScholarshipName,
             UniversityName: data.UniversityName,
             image: image_url,
-            Country: data.Country,
-            city: data.city,
+            // Country: data.Country,
+            // city: data.city,
+            location:{ 
+                Country: data.Country,
+                city: data.city,},
             WorldRank: data.WorldRank,
             SubjectCategorey: data.SubjectCategorey,
             ScholarshipCategory: data.ScholarshipCategory,
@@ -64,11 +67,11 @@ const AddScholarShipForm = () => {
     }
     return (
         <div>
-            <h2>form</h2>
+        
             <div>
-            <h2>add items </h2>
+            
             <form onSubmit={handleSubmit(onSubmit)} className="card-body max-w-lg mx-auto">
-                <h1 className="text-3xl font-bold text-center">add items</h1>
+                <h1 className="text-3xl font-bold text-center">add scholarship</h1>
                 <div className="form-control">
                     <label htmlFor="text" className="label">
                         <span className="label-text">Scholarship Name</span>

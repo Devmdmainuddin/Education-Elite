@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import UpdateUserModal from '../Dashboard/Modal/UpdateUserModal'
+import UpdateUserModal from '../Modal/UpdateUserModal'
 import { useState } from 'react'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../../hooks/useAuth'
 import Swal from 'sweetalert2'
 const UserDataRow = ({ user, refetch }) => {
   const [isOpen, setIsOpen] = useState(false)

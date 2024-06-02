@@ -96,7 +96,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser)
 
       const userinfo = {
-        name: currentUser?.displayName,
+        name: currentUser?.displayName || user?.displayName,
         email: currentUser?.email,
         role: 'user',
         status: 'verified',

@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 // import useAuth from '../../../hooks/useAuth'
 import { useQuery } from '@tanstack/react-query'
-import UserDataRow from '../../../components/Dashboard/UserDataRow'
+import UserDataRow from '../../../components/Dashboard/Rows/UserDataRow'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 
 const ManageUsers = () => {
