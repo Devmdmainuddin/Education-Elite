@@ -14,6 +14,7 @@ import Home from "../pages/Home/Home";
 import SholarshipDetails from "../pages/details/SholarshipDetails";
 import Payment from "../pages/payment/Payment";
 import Chackout from '../pages/Chackout'
+import AllScholarship from "../pages/AllScholarship";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/allscholarship",
+        element: <AllScholarship />,
       },
       {
         path: "/ScholarShip/:id",

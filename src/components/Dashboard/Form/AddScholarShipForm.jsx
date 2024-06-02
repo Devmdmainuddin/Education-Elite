@@ -24,7 +24,7 @@ const AddScholarShipForm = () => {
                 Country: data.Country,
                 city: data.city,},
             WorldRank: data.WorldRank,
-            SubjectCategorey: data.SubjectCategorey,
+            SubjectCategorey: data.Subjectcategory,
             ScholarshipCategory: data.ScholarshipCategory,
             Degree: data.Degree,
             TuitionFees: data.TuitionFees,
@@ -133,23 +133,16 @@ const AddScholarShipForm = () => {
                     Subject category
                 </label>
                 <select
-                    {...register("SubjectCategorey",)}
+                    {...register("Subjectcategory",)}
                     name="Subjectcategory"
-                    defaultValue='Agriculture'
-                    id="category"
+                    id="Subjectcategory"
                     className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                     type="text"
                     placeholder="Select category"
                 >
-                     <option  value='Agriculture' >
-                     Agriculture
-                    </option>
-                    <option  value='Engineering'>
-                    Engineering
-                    </option>
-                    <option  value='Doctor' >
-                    Doctor
-                    </option>
+                     <option  value='Agriculture'>Agriculture</option>
+                    <option  value='Engineering'>Engineering</option>
+                    <option  value='Doctor'>Doctor</option>
 
 
                 </select>
@@ -157,15 +150,14 @@ const AddScholarShipForm = () => {
                 <div className="form-control">
                 <label
                     className="block mt-4 mb-2 dark:text-white"
-                    htmlFor="Scholarship-category"
+                    htmlFor="ScholarshipCategory"
                 >
                    Scholarship category
                 </label>
                 <select
                     {...register("ScholarshipCategory",)}
-                    name="Scholarship-category"
-                    defaultValue='Full fund'
-                    id="Scholarship-category"
+                    name="ScholarshipCategory"
+                    id="ScholarshipCategory"
                     className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                     type="text"
                     placeholder="Select Scholarship category"
@@ -192,22 +184,15 @@ const AddScholarShipForm = () => {
                 </label>
                 <select
                     {...register("Degree",)}
-                    defaultValue='Bachelor'
                     name="Degree"
                     id="Degree"
                     className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                     type="text"
                     placeholder="Select Scholarship category"
                 >
-                     <option  value='Full fund' >
-                     Diploma
-                    </option>
-                    <option  value='Partial' >
-                    Bachelor
-                    </option>
-                    <option  value='Self-fund' >
-                    masters
-                    </option>
+                     <option  value='Diploma' >Diploma</option>
+                    <option  value='Bachelor' >Bachelor</option>
+                    <option  value='masters' >masters</option>
 
 
                 </select>
