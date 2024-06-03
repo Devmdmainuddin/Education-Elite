@@ -1,39 +1,8 @@
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
+import PropTypes from 'prop-types';
 
-
-const ApplyScholearshipsRow = ({scholarship, refetch }) => {
-    const axiosSecure = useAxiosSecure()
-    const handleDelet = id => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.delete(`/scholarship/${id}`)
-                    .then(res => {
-                        if (res.data.deletedCount > 0) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "user has been delete",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            refetch()
-                        }
-                    })
-
-            }
-        });
-
-    }
+const ApplyScholearshipsRow = ({scholarship, handleDelet }) => {
+    
     return (
         <tr>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -70,5 +39,8 @@ const ApplyScholearshipsRow = ({scholarship, refetch }) => {
     </tr>
     );
 };
-
+ApplyScholearshipsRow.propTypes = {
+    scholarship: PropTypes.object,
+    handleDelet: PropTypes.func,
+  };
 export default ApplyScholearshipsRow;

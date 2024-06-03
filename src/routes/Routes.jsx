@@ -15,6 +15,7 @@ import SholarshipDetails from "../pages/details/SholarshipDetails";
 import Payment from "../pages/payment/Payment";
 import Chackout from '../pages/Chackout'
 import AllScholarship from "../pages/AllScholarship";
+import EditScholarShipForm from "../components/Dashboard/Form/EditScholarShipForm";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
       {
         path: "/ScholarShip/:id",
         element: <SholarshipDetails />,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
+      },
+      {
+        path: "/updateScholarShip/:id",
+        element: <EditScholarShipForm />,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
       },
       {
