@@ -31,10 +31,10 @@ const SholarshipDetails = () => {
         setuserReview(filteritems)
         refetch()
 
-    }, [reviews, sholarship,refetch])
+    }, [reviews, sholarship, refetch])
 
 
-    
+
     const { mutateAsync } = useMutation({
         mutationFn: async reviewData => {
             const { data } = await axiosSecure.post(`/reviews`, reviewData)
@@ -148,7 +148,7 @@ const SholarshipDetails = () => {
                             </div>
                             <div className="flex -mx-2 mb-4 justify-center">
                                 <div className="w-1/2 px-2">
-                                 <Link to={`/chackout/${sholarship._id}`}> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>  
+                                    <Link to={`/chackout/${sholarship._id}`}> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>
                                 </div>
 
                             </div>
@@ -161,7 +161,7 @@ const SholarshipDetails = () => {
                             <div className="flex mb-4">
                                 <div className="mr-4">
                                     <span className="font-bold text-gray-700 dark:text-gray-300">price : </span>
-                                    <span className="text-gray-600 dark:text-gray-300">{sholarship.location}</span>
+                                    <span className="text-gray-600 dark:text-gray-300"></span>
                                 </div>
                                 <div>
                                     <span className="font-bold text-gray-700 dark:text-gray-300">In Stock : </span>
@@ -328,45 +328,6 @@ const SholarshipDetails = () => {
                         </SwiperSlide>
                     )
                 }
-
-                {/* <SwiperSlide>
-                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
-                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
-                                <div className="pl-4 pt-4 flex items-start justify-between">
-                                    <div className="mr-6">
-                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
-                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Dany John</p>
-                                    </div>
-                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-2.png" alt="Display avatar of Dany John" role="img" />
-                                </div>
-                            </div>
-                        
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
-                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
-                                <div className="pl-4 pt-4 flex items-start justify-between">
-                                    <div className="mr-6">
-                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
-                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Anna Smith</p>
-                                    </div>
-                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-1.png" alt="Display Avatar of Anna Smith" role="img" />
-                                </div>
-                            </div>
-                          
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8">
-                                <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
-                                <div className="pl-4 pt-4 flex items-start justify-between">
-                                    <div className="mr-6">
-                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
-                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Mike Blake</p>
-                                    </div>
-                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-3.png" alt="Display Avatar of Mike Blake" role="img" />
-                                </div>
-                            </div>
-                        </SwiperSlide> */}
 
             </Swiper>
 

@@ -7,7 +7,8 @@ const Scholarship = ({item}) => {
         WorldRank,SubjectCategorey,
         ScholarshipCategory,
         Degree,
-        ApplicationFees}=item;
+        ApplicationFees,
+    _id}=item;
     return (
         <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
         <img
@@ -36,7 +37,7 @@ const Scholarship = ({item}) => {
                 <span> <img className="w-12 rounded-full" src={userInfo.userImage?userInfo.userImage:"https://i.ibb.co/n3pxCKM/profile.png"} alt="" /> </span>
                 <span>{userInfo.name}</span>
             </div> */}
-            <Link to='' className="block text-center mt-3 w-full rounded text-white px-12 py-3 text-sm font-medium bg-teal-500 shadow  focus:outline-none focus:ring active:text-rose-500 sm:w-auto" ><button>recommend</button></Link>
+            <Link to={`/ScholarShip/${_id}`} className="block text-center mt-3 w-full rounded text-white px-12 py-3 text-sm font-medium bg-teal-500 shadow  focus:outline-none focus:ring active:text-rose-500 sm:w-auto" ><button>recommend</button></Link>
         </div>
 
     </article>

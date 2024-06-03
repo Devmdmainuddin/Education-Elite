@@ -3,6 +3,7 @@ import useScholearShips from "../../../hooks/useScholearShips";
 import ManageScholearshipsRow from '../../../components/Dashboard/Rows/ManageScholearshipsRow'
 const ManageScholerShips = () => {
     const [allScholarShip,refetch]=useScholearShips()
+    console.log(allScholarShip);
     return (
         <div className='container mx-auto px-4 sm:px-8'>
         <Helmet>
