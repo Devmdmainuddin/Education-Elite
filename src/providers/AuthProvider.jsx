@@ -96,16 +96,16 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail }
       setUser(currentUser)
       console.log(currentUser?.displayName);
-      const userinfo = {
-        name: currentUser?.displayName,
-        email: currentUser?.email,
-        role: 'user',
-        status: 'verified',
-      }
+     
 
       if (currentUser) {
         // console.log(currentUser);
-
+        const userinfo = {
+          name: currentUser?.displayName || user.displayName,
+          email: currentUser?.email || user?.email,
+          role: 'user',
+          status: 'verified',
+        }
         axiosCommon.put(`/user`, userinfo)
           .then(res => {
             // console.log(res.data);

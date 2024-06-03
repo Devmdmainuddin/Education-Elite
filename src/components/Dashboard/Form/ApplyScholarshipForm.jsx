@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 
-const ApplyScholarshipForm = ({ UniversityName, ScholarshipCategory, SubjectCategorey ,id}) => {
+const ApplyScholarshipForm = ({ UniversityName,total, ScholarshipCategory, SubjectCategorey ,id}) => {
     const { register, handleSubmit } = useForm();
     // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
@@ -27,6 +27,7 @@ const ApplyScholarshipForm = ({ UniversityName, ScholarshipCategory, SubjectCate
             sscresult: data.sscresult,
             hscresult: data.hscresult,
             universityName: data.universityName,
+            applicationfees:total,
            applyDate: new Date,
             username:user?.displayName,
             userId:user?.uid,

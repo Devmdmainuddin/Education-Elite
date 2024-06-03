@@ -9,16 +9,16 @@ const ApplyScholearshipsRow = ({scholarship, handleDelet }) => {
             <p className='text-gray-900 whitespace-no-wrap'>{scholarship.SubjectCategorey}</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.scholarshipcategory}</p>
+            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.universityName}</p>
+        </td>
+        <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.SubjectCategorey}</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
             <p className='text-gray-900 whitespace-no-wrap'>{scholarship.Degree}</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.phoneNumber}</p>
-        </td>
-        <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.universityName}</p>
+            <p className='text-gray-900 whitespace-no-wrap'>{scholarship.applicationfees}</p>
         </td>
 
 

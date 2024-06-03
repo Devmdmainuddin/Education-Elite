@@ -38,6 +38,8 @@ const SholarshipDetails = () => {
     const { mutateAsync } = useMutation({
         mutationFn: async reviewData => {
             const { data } = await axiosSecure.post(`/reviews`, reviewData)
+            refetch()
+            
             return data
         },
         onSuccess: () => {
@@ -78,6 +80,7 @@ const SholarshipDetails = () => {
 
         try {
             await mutateAsync(reviewData)
+            form.reset()
         }
         catch (err) {
             console.log(err);
@@ -251,7 +254,7 @@ const SholarshipDetails = () => {
                                 className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                                 maxLength={5}
                                 max={5}
-                                min={0}
+                                min={1}
                                 type="number"
                                 placeholder="Enter Rating"
                                 id="rating"

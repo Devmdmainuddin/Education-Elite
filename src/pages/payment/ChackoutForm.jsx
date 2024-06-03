@@ -120,7 +120,7 @@ const ChackoutForm = ({total,id,UniversityName,ScholarshipCategory,SubjectCatego
             },
           }}
         />
-        <button type="submit" >
+        <button type="submit" className=" mt-6 py-2 px-9 bg-[#6eecab] rounded uppercase mx-auto block" >
           Pay
         </button>
         <p className="text-red-500">{error}</p>
@@ -130,7 +130,7 @@ const ChackoutForm = ({total,id,UniversityName,ScholarshipCategory,SubjectCatego
     <p className="text-green-600"> your transaction id:{transactionId}
     <h2>user name:</h2>
 </p>
-<ApplyScholarshipForm id={id} SubjectCategorey={SubjectCategorey}ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName}/>
+<ApplyScholarshipForm id={id} SubjectCategorey={SubjectCategorey}ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName} total={total} />
 </>}
     </div>
   );

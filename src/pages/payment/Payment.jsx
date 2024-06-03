@@ -5,8 +5,11 @@ import { loadStripe } from "@stripe/stripe-js";
 const Payment = () => {
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
     return (
-        <div>
+        <div className="w-[300px]">
             <h2>payment page</h2>
+            <div>
+                
+            </div>
             <Elements stripe={stripePromise} >
                 {/* <ChackoutForm /> */}
             </Elements>

@@ -18,7 +18,12 @@ const SignUp = () => {
     const email = form.email.value
     const password = form.password.value
     const image = form.image.files[0]
-  
+    // const userinfo = {
+    //   name: name,
+    //   email: email,
+    //   role: 'user',
+    //   status: 'verified',
+    // }
     // const info = {name,email,password,image}
 
     try {
