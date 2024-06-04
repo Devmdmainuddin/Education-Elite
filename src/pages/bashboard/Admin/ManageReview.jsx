@@ -1,9 +1,10 @@
-import toast from "react-hot-toast";
+
 import ReviewsItems from "../../../components/pages/ReviewsItems";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useReviews from "../../../hooks/useReviews";
 import { useMutation } from "@tanstack/react-query";
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
+import Swal from "sweetalert2";
 const ManageReview = () => {
     const axiosSecure = useAxiosSecure()
     const [reviews, loading, refetch] = useReviews()
@@ -17,17 +18,40 @@ const ManageReview = () => {
         onSuccess: data => {
             console.log(data)
             refetch()
-            toast.success('Successfully deleted.')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully deleted.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+          
         },
     })
 
     const handleDelete = async id => {
-        console.log(id)
-        try {
-            await mutateAsync(id)
-        } catch (err) {
-            console.log(err)
-        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Its, deleted !"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                try {
+                    await mutateAsync(id)
+                } catch (err) {
+                    console.log(err)
+                }
+
+            }
+        });
+
+        
+        
     }
 
     if (loading) return <LoadingSpinner />

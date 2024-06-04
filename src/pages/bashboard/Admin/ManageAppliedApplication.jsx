@@ -4,15 +4,40 @@ import ApplyScholearshipsRow from "../../../components/Dashboard/Rows/ApplySchol
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
 
 
 const ManageAppliedApplication = () => {
     const [applyScholarship,loading,refetch] = useApplyScholarship()
 
+   
     const axiosSecure = useAxiosSecure()
-
-
-    const handleDelet = id => {
+const items= applyScholarship.filter(p=>{p})
+    const { mutateAsync } = useMutation({
+      mutationFn: async userRole => {
+        const { data } = await axiosSecure.patch(`/application/update/${items._id}`, userRole)
+        return data
+      },
+      onSuccess: data => {
+        console.log(data)
+         refetch()
+         Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Application Status update successfully",
+          showConfirmButton: false,
+          timer: 1500
+      });
+     
+   
+  
+      }
+    })
+    const handleDelet =() => {
+      const userRole = {
+        status: "rejected",
+      
+      }
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -21,21 +46,10 @@ const ManageAppliedApplication = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+        }).then(async(result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/scholarship/${id}`)
-                    .then(res => {
-                        if (res.data.deletedCount > 0) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "user has been delete",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            refetch()
-                        }
-                    })
+              await mutateAsync(userRole)
+                   
 
             }
         });

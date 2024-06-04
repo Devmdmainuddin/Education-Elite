@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 
-const ApplyScholarshipForm = ({ UniversityName, total, ScholarshipCategory, SubjectCategorey, id }) => {
+const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, ScholarshipCategory, SubjectCategorey, id }) => {
     const { register, handleSubmit } = useForm();
     // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
@@ -20,6 +20,7 @@ const ApplyScholarshipForm = ({ UniversityName, total, ScholarshipCategory, Subj
                 city: data.city,
             },
             gender: data.gender,
+            ScholarshipName:data.ScholarshipName,
             SubjectCategorey: data.SubjectCategorey,
             scholarshipcategory: data.scholarshipcategory,
             Degree: data.Degree,
@@ -187,6 +188,14 @@ const ApplyScholarshipForm = ({ UniversityName, total, ScholarshipCategory, Subj
 
                 </div>
 
+                <div className="form-control">
+                    <label htmlFor="city" className="label">
+                        <span className="label-text">Scholarship Name</span>
+                    </label>
+                    <input type="text" defaultValue={ScholarshipName} readOnly placeholder="type your University city name" name="city" id="text" className="input input-bordered" required
+                        {...register("ScholarshipName",)} />
+
+                </div>
                 <div className="form-control">
                     <label htmlFor="city" className="label">
                         <span className="label-text">University name</span>

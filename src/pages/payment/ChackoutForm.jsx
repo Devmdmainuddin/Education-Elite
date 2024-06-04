@@ -8,7 +8,7 @@ import AddScholarShipForm from "../../components/Dashboard/Form/AddScholarShipFo
 import ApplyScholarshipForm from "../../components/Dashboard/Form/ApplyScholarshipForm";
 // import { useNavigate } from "react-router-dom";
 
-const ChackoutForm = ({total,id,UniversityName,ScholarshipCategory,SubjectCategorey}) => {
+const ChackoutForm = ({total,id,ScholarshipName,UniversityName,ScholarshipCategory,SubjectCategorey}) => {
   const [error, setError] = useState()
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId,setTransactionId] = useState('');
@@ -130,7 +130,7 @@ const ChackoutForm = ({total,id,UniversityName,ScholarshipCategory,SubjectCatego
     <p className="text-green-600"> your transaction id:{transactionId}
     <h2>user name:</h2>
 </p>
-<ApplyScholarshipForm id={id} SubjectCategorey={SubjectCategorey}ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName} total={total} />
+<ApplyScholarshipForm id={id} ScholarshipName={ScholarshipName} SubjectCategorey={SubjectCategorey}ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName} total={total} />
 </>}
     </div>
   );

@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import UpdateApplyModal from '../Modal/UpdateApplyModal'
 import { useState } from 'react'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { useMutation } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
+// import toast from 'react-hot-toast'
+import { FaRegEdit } from 'react-icons/fa';
+import FeedbackModal from "../Modal/FeedbackModal";
+import Swal from "sweetalert2";
+import DetailsModal from "../Modal/DetailsModal";
 
-
-const ApplyScholearshipsRow = ({scholarship, handleDelet,refetch }) => {
-    const {_id,SubjectCategorey,universityName,Degree,applicationfees,status}=scholarship 
+const ApplyScholearshipsRow = ({scholarship,refetch }) => {
+    const {_id,ScholarshipName,SubjectCategorey,universityName,Degree,applicationfees,status}=scholarship 
     const [isOpen, setIsOpen] = useState(false)
+    const [detailsModal,setDetailsModal] = useState(false)
+    const [openFeedback,setOpenFeedback]= useState(false)
 
     const axiosSecure = useAxiosSecure()
+
     const { mutateAsync } = useMutation({
       mutationFn: async userRole => {
         const { data } = await axiosSecure.patch(`/application/update/${_id}`, userRole)
@@ -20,32 +26,55 @@ const ApplyScholearshipsRow = ({scholarship, handleDelet,refetch }) => {
       onSuccess: data => {
         console.log(data)
          refetch()
-        toast.success('user role update successfully')
-        setIsOpen(false)
+         Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Application Status update successfully",
+          showConfirmButton: false,
+          timer: 1500
+      });
+     
+   
   
+
       }
     })
+    const handleDelet =() => {
+      const userRole = {
+        status: "rejected",
+      
+      }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "canceled!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+              await mutateAsync(userRole)
+                   
+
+            }
+        });
+
+    }
 
 
-    const modalHandler = async selected => {
 
-          const userRole = {
-            status: selected,
-          
-          }
-          try {
-            refetch()
-             await mutateAsync(userRole)
-          } catch (err) {
-            console.log(err.message);
-            toast.error(err.message)
-          }
-        }
 
+
+   
+
+        
 
     return (
         <tr>
-       
+       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+            <p className='text-gray-900 whitespace-no-wrap'>{ScholarshipName}</p>
+        </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
             <p className='text-gray-900 whitespace-no-wrap'>{universityName}</p>
         </td>
@@ -65,23 +94,31 @@ const ApplyScholearshipsRow = ({scholarship, handleDelet,refetch }) => {
             aria-hidden='true'
             className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
           ></span>
+          <div className="flex relative gap-x-2 items-center">
           <span className='relative'>{status}</span>
+          <span className='relative'><FaRegEdit></FaRegEdit></span>
+          </div>
+          
         </button>
         {/* Update User Modal */}
-        <UpdateApplyModal isOpen={isOpen} setIsOpen={setIsOpen} modalHandler={modalHandler} stat={status} ></UpdateApplyModal>
+        <UpdateApplyModal isOpen={isOpen} setIsOpen={setIsOpen} id={_id} refetch={refetch} stat={status} ></UpdateApplyModal>
         </td>
 
 
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
             
-            {/* Update User Modal */}
-            {/* <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen} modalHandler={modalHandler} user={user}></UpdateUserModal> */}
-            <Link className='cursor-pointer inline-block px-3 py-1 bg-green-200  rounded-full font-semibold text-red-900 leading-tight'>
+
+            <button onClick={() => setDetailsModal(true)} className='cursor-pointer inline-block px-3 py-1 bg-[#dddfdf] rounded-full font-semibold  leading-tight'>
              Details
-            </Link>
-            <Link  className='cursor-pointer inline-block px-3 py-1 bg-green-300   rounded-full font-semibold text-red-900 leading-tight'>
+            </button>
+            {/* {Details feedback} */}
+            <DetailsModal detailsModal={detailsModal} setDetailsModal={setDetailsModal}> ScholarshipName={ScholarshipName} SubjectCategorey-{SubjectCategorey} universityName={universityName} Degree={Degree} applicationfees={applicationfees}  </DetailsModal>
+            <button onClick={() => setOpenFeedback(true)} className=' rounded-full bg-green-200 relative cursor-pointer flex gap-x-2 items-center px-3 py-1 font-semibold text-green-900 leading-tight'>
             Feedback
-            </Link>
+            <span className=''><FaRegEdit></FaRegEdit></span>
+            </button>
+            {/* {update feedback} */}
+            <FeedbackModal openFeedback={openFeedback} setOpenFeedback={setOpenFeedback}  id={_id} refetch={refetch}> </FeedbackModal>
             <button onClick={() => handleDelet(scholarship._id)} className='cursor-pointer inline-block px-3 py-1 bg-red-200  rounded-full font-semibold text-red-900 leading-tight'>
             Cancel
             </button>
@@ -92,5 +129,6 @@ const ApplyScholearshipsRow = ({scholarship, handleDelet,refetch }) => {
 ApplyScholearshipsRow.propTypes = {
     scholarship: PropTypes.object,
     handleDelet: PropTypes.func,
+    refetch: PropTypes.func,
   };
 export default ApplyScholearshipsRow;

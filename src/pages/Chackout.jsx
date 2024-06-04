@@ -7,7 +7,8 @@ import useAuth from "../hooks/useAuth";
 const Chackout = () => {
     const items = useLoaderData()
     const {user}= useAuth()
-    const { TuitionFees, ApplicationFees, ServiceCharge, _id, UniversityName, ScholarshipCategory, SubjectCategorey } = items
+    const { TuitionFees, ApplicationFees, ServiceCharge,ScholarshipName
+,        _id, UniversityName, ScholarshipCategory, SubjectCategorey } = items
     const total = parseInt(TuitionFees) + parseInt(ApplicationFees) + parseInt(ServiceCharge)
 
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
@@ -21,7 +22,7 @@ const Chackout = () => {
         
             <div className="max-w-[800px] mx-auto mt-6 border p-6">
                 <Elements stripe={stripePromise} >
-                    <ChackoutForm total={total} id={_id} SubjectCategorey={SubjectCategorey} ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName} />
+                    <ChackoutForm total={total} id={_id} ScholarshipName={ScholarshipName} SubjectCategorey={SubjectCategorey} ScholarshipCategory={ScholarshipCategory} UniversityName={UniversityName} />
                 </Elements>
             </div>
 
