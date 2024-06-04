@@ -12,8 +12,6 @@ const AddScholarShipForm = () => {
 
     const onSubmit = async data => {
         const image_url = await imageUpload(data.image[0])
-
-
         const ScholarShipItem = {
             ScholarshipName: data.ScholarshipName,
             UniversityName: data.UniversityName,
@@ -39,7 +37,7 @@ const AddScholarShipForm = () => {
         console.log(ScholarShipItem);
 
         try {
-            const { data } = await axiosSecure.post(`${import.meta.env.VITE_API_URL}/addScholarShip`, ScholarShipItem)
+            const { data } = await axiosSecure.post(`/addScholarShip`, ScholarShipItem)
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({

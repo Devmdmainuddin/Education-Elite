@@ -1,9 +1,30 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import { axiosSecure } from "../../../hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
 
 
 const EditScholarShipForm = () => {
     const sholarship = useLoaderData();
     console.log(sholarship);
+
+    const {mutateAsync}=useMutation({
+        mutationFn:async updateData=>{
+                    const{data}=await axiosSecure.put(`/ScholarShips/${sholarship._id}`,updateData)
+           return data
+        },
+        onSuccess:()=>{
+          
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your items has been Edit",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    })
+
     const handleSubmit=async e=>{
         e.preventDefault()
         const form = e.target
@@ -38,7 +59,19 @@ const EditScholarShipForm = () => {
             city,
           },
        }
-       console.log(updateData);
+       
+       try{
+        await mutateAsync(updateData)
+       }
+       catch (err) {
+        Swal.fire({
+            position: "top-end",
+            icon: "Error",
+            title: "Your items not  Edit ",
+            showConfirmButton: false,
+            timer: 1500
+        });
+       }
     }
     return (
         <div>

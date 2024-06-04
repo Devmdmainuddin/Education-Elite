@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 
-const ApplyScholarshipForm = ({ UniversityName,total, ScholarshipCategory, SubjectCategorey ,id}) => {
+const ApplyScholarshipForm = ({ UniversityName, total, ScholarshipCategory, SubjectCategorey, id }) => {
     const { register, handleSubmit } = useForm();
     // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
@@ -27,18 +27,19 @@ const ApplyScholarshipForm = ({ UniversityName,total, ScholarshipCategory, Subje
             sscresult: data.sscresult,
             hscresult: data.hscresult,
             universityName: data.universityName,
-            applicationfees:total,
-           applyDate: new Date,
-            username:user?.displayName,
-            userId:user?.uid,
+            applicationfees: total,
+            Status:'pending',
+            applyDate: new Date,
+            username: user?.displayName,
+            userId: user?.uid,
             userEmail: user?.email,
-            scholarshipID:id,
+            scholarshipID: id,
 
         }
         console.log(applyShipItem);
 
         try {
-            const { data } = await axiosSecure.post(`${import.meta.env.VITE_API_URL}/applyScholarShip`, applyShipItem)
+            const { data } = await axiosSecure.post(`/applyScholarShip`, applyShipItem)
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({

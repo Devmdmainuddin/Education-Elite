@@ -61,13 +61,16 @@ const SholarshipDetails = () => {
         const rating = form.rating.value
         const comments = form.Comments.value
         const sholarshipId = sholarship._id;
+        const sholarshipName = sholarship.ScholarshipName;
         const sholarshipUniversity = sholarship.UniversityName;
         const sholarshipcategory = sholarship.ScholarshipCategory;
-        const reviewerImage = user.photoURL
-        const reviewerName = user.displayName;
+        const reviewerImage = user?.photoURL
+        const reviewerName = user?.displayName;
+        const reviewerEmail = user?.email;
         const reviewDate = (new Date()).toDateString();
 
         const reviewData = {
+            sholarshipName,
             sholarshipId,
             sholarshipUniversity,
             sholarshipcategory,
@@ -75,10 +78,12 @@ const SholarshipDetails = () => {
             comments,
             reviewerImage,
             reviewerName,
+            reviewerEmail,
             reviewDate,
         };
 
         try {
+            console.log(reviewData);
             await mutateAsync(reviewData)
             form.reset()
         }

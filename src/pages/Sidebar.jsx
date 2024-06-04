@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import MenuItem from "./bashboard/Menu/MenuItem";
 import ModeratorMenu from './bashboard/Menu/ModeratorMenu'
-import { BsGraphUp } from "react-icons/bs";
+// import { BsGraphUp } from "react-icons/bs";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import useAuth from "../hooks/useAuth";
@@ -10,12 +10,14 @@ import GuestMenu from "./bashboard/Menu/GuestMenu";
 import AdminMenu from './bashboard/Menu/AdminMenu'
 import useRole from "../hooks/useRole";
 import logo from'../assets/logo-12.png'
+import LoadingSpinner from "../components/Shared/LoadingSpinner";
 
 const Sidebar = () => {
     const { logOut } = useAuth()
     const [isActive,] = useState(false)
     const [role, isloading] = useRole()
-    console.log(role, isloading)
+    // console.log(role, isloading)
+    if (isloading) return <LoadingSpinner />
     return (
         <>
         {/* Small Screen Navbar */}

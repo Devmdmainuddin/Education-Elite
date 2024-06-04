@@ -1,13 +1,16 @@
 
-import { BsSearch } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
 import Carousel from "../../components/Carousel/Carousel";
 import Container from "../../components/Shared/Container";
 import ScholarshipItems from "../../components/Home/ScholarshipItems";
 import useScholearShips from "../../hooks/useScholearShips";
+import ContactUs from "../contactus/ContactUs";
+import { useState } from "react";
 
 
 
 const Home = () => {
+    const [dataLength, setDataLength] = useState(6);
   const [allScholarShip] =useScholearShips()
 
   
@@ -25,7 +28,7 @@ const Home = () => {
                 <div id="gridLayout" className="grid grid-cols-3 gap-6 mt-12">
                  
                     {
-                        allScholarShip.map(item => <ScholarshipItems
+                        allScholarShip.slice(0, dataLength).map(item => <ScholarshipItems
                             key={item._id}
                             item={item}
 
@@ -33,7 +36,9 @@ const Home = () => {
                     }
 
                 </div>
-
+<div>
+    <ContactUs></ContactUs>
+</div>
 
             </Container>
 

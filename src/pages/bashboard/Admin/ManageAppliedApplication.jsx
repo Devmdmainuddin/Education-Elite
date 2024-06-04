@@ -84,6 +84,12 @@ const ManageAppliedApplication = () => {
                     >
                      Application Fees
                     </th>
+                    <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >
+                       Application Status
+                    </th>
 
                     <th
                       scope='col'
@@ -95,7 +101,7 @@ const ManageAppliedApplication = () => {
                 </thead>
                 <tbody>{/* User data table row */}
                 {
-                  applyScholarship.map(scholarship =><ApplyScholearshipsRow key={scholarship._id} scholarship={scholarship} handleDelet={handleDelet} ></ApplyScholearshipsRow>)  
+                  applyScholarship.map(scholarship =><ApplyScholearshipsRow key={scholarship._id} scholarship={scholarship} handleDelet={handleDelet} refetch={refetch}></ApplyScholearshipsRow>)  
                 }
             
                 </tbody>

@@ -16,6 +16,8 @@ import Payment from "../pages/payment/Payment";
 import Chackout from '../pages/Chackout'
 import AllScholarship from "../pages/AllScholarship";
 import EditScholarShipForm from "../components/Dashboard/Form/EditScholarShipForm";
+import MyApplication from "../pages/bashboard/user/MyApplication";
+import MyReviews from "../pages/bashboard/user/MyReviews";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +92,23 @@ export const router = createBrowserRouter([
           path:'manage-Users',
           element: <ManageUsers></ManageUsers>
         },
+        {
+          path:'my-reviews',
+          element: <MyReviews></MyReviews>
+        },
+        {
+          path:'my-application',
+          element: <MyApplication></MyApplication>
+        },
+
+
+
+
+
+
+
+
+
       ]
     }
   ]);

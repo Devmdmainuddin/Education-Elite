@@ -14,7 +14,7 @@ const Chackout = () => {
     return (
         <div >
             <div className="capitalize text-center">
-            <h2 className="text-3xl capitalize">welcome TO {user.displayName}</h2>
+            <h2 className="text-3xl capitalize">welcome TO {user?.displayName}</h2>
             <p>application payment info</p>
             <p>you total payment is : ${total}</p>
             </div>
