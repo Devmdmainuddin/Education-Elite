@@ -114,7 +114,7 @@ const handleDelete = async id => {
             </thead>
             <tbody>{/* User data table row */}
               {
-                applyScholarShip.map(apply => <MyApplyRow key={apply._id} apply={apply} handleDelete={handleDelete}></MyApplyRow>)
+                applyScholarShip.map(apply => <MyApplyRow key={apply._id} apply={apply} handleDelete={handleDelete} isPending={isPending} refetch={refetch}></MyApplyRow>)
               }
 
             </tbody>

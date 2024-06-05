@@ -98,7 +98,7 @@ const MyReviews = () => {
                         </thead>
                         <tbody>{/* User data table row */}
                             {
-                                myreviews.map(review => <MyReviewsRow key={review._id} review={review} handleDelete={handleDelete}></MyReviewsRow>)
+                                myreviews.map(review => <MyReviewsRow key={review._id} review={review} handleDelete={handleDelete} isLoading={isLoading} refetch={refetch}></MyReviewsRow>)
                             }
 
                         </tbody>

@@ -27,11 +27,11 @@ const SholarshipDetails = () => {
 
     useEffect(() => {
         const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)
-        refetch()
+       
         setuserReview(filteritems)
-        refetch()
+       
 
-    }, [reviews, sholarship, refetch])
+    }, [reviews, sholarship])
 
 
 
@@ -90,54 +90,6 @@ const SholarshipDetails = () => {
         catch (err) {
             console.log(err);
         }
-
-        // try {
-        //     if (user.email !== autherEmail) {
-        //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/addRecommendation`, info)
-        //         // console.log(data)
-
-
-        //         if (data?.insertedId) {
-        //             form.reset();
-
-        //             // const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/updaterecommen/${items._id}`, recoupdate)
-        //             //  console.log(data)
-
-        //             // axios.get(`${import.meta.env.VITE_API_URL}/recommendation`)
-        //             //     .then(data => {
-        //             //         const filteritems = data.data.filter(p => p.queryId == items._id)
-        //             //         setrecommentitems(filteritems)
-        //             //     })
-        //             Swal.fire({
-        //                 position: "top-end",
-        //                 icon: "success",
-        //                 title: " add recommendation items ",
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-
-        //             });
-        //         }
-        //     } else {
-        //         Swal.fire({
-        //             position: "top-end",
-        //             icon: "error",
-        //             title: " you are not allowed add recommendation ",
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //         });
-        //     }
-        // }
-        // catch (err) {
-        //     // console.log(err)
-        //     Swal.fire({
-        //         position: "top-end",
-        //         icon: "error",
-        //         title: " add recommendation faile",
-        //         showConfirmButton: false,
-        //         timer: 1500
-        //     });
-        // }
-
     };
 
     if (loading) return <LoadingSpinner />

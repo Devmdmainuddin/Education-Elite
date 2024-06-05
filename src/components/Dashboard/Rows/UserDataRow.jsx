@@ -4,20 +4,19 @@ import { useState } from 'react'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
-import useAuth from '../../../hooks/useAuth'
 import Swal from 'sweetalert2'
-const UserDataRow = ({ user, refetch }) => {
+const UserDataRow = ({ user, refetch}) => {
   const [isOpen, setIsOpen] = useState(false)
-  const {user: loggedInUser}=useAuth()
   const axiosSecure = useAxiosSecure()
+
   const { mutateAsync } = useMutation({
     mutationFn: async role => {
       const { data } = await axiosSecure.patch(`/users/update/${user.email}`, role)
       return data
     },
     onSuccess: data => {
-      console.log(data)
       refetch()
+      console.log(data)
       toast.success('user role update successfully')
       setIsOpen(false)
 
@@ -26,18 +25,13 @@ const UserDataRow = ({ user, refetch }) => {
 
 
   const modalHandler = async selected => {
-  if(loggedInUser.email === user.email){
-    toast.error('Action Not Allowed')
-    return setIsOpen(false)
-  }
-    // if(user?.status === 'verified') 
-    //   return toast.success('user statas change korte cai na')
     const userRole = {
       role: selected,
       status: 'verified',
     }
     try {
-       await mutateAsync(userRole)
+      refetch()
+       await mutateAsync(userRole) 
     } catch (err) {
       console.log(err.message);
       toast.error(err.message)
@@ -46,8 +40,6 @@ const UserDataRow = ({ user, refetch }) => {
 
 
   const handleDelet = id => {
-
-
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -61,6 +53,7 @@ const UserDataRow = ({ user, refetch }) => {
             axiosSecure.delete(`/users/${id}`)
                 .then(res => {
                    if(res.data.deletedCount > 0){
+                    refetch()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -68,7 +61,7 @@ const UserDataRow = ({ user, refetch }) => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    refetch()
+                   
                    }
                 })
                 

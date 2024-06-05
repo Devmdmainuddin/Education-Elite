@@ -7,8 +7,7 @@ const useScholearShips = () => {
     const { data: allScholarShip = [], isPending:loading, refetch } = useQuery({
         queryKey: ['allScholarShip'],
         queryFn: async() => {
-          const { data } = await axiosSecure.get(`/ScholarShips`)
-          // console.log(data);
+          const { data } = await axiosSecure.get(`/ScholarShip`)
           return data
         },
       })

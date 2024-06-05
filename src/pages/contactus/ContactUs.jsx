@@ -65,7 +65,7 @@ const ContactUs = () => {
                 <div className="lg:flex lg:items-center lg:-mx-6">
                     <div className="lg:w-1/2 lg:mx-6">
                         <h1 className="text-2xl font-semibold text-gray-800 capitalize dark:text-white lg:text-3xl">
-                            Contact us for <br /> more info
+                        more info
                         </h1>
 
                         <div className="mt-6 space-y-8 md:mt-8">
@@ -134,6 +134,7 @@ const ContactUs = () => {
                     <div className="mt-8 lg:w-1/2 lg:mx-6">
                         <div
                             className="w-full px-8 py-10 mx-auto overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-900 lg:max-w-xl shadow-gray-300/50 dark:shadow-black/50">
+                           <h2> Contact us </h2>
                             <h1 className="text-lg font-medium text-gray-700">What do you want to ask</h1>
 
                             <form className="mt-6" onSubmit={handlesubmit}>

@@ -5,37 +5,57 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
+import { FaEye } from 'react-icons/fa';
+import { IoMdEyeOff } from 'react-icons/io';
 
 const Login = () => {
-
+  const [showpassword, setshowpassword] = useState(null)
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
   const location = useLocation()
-  const from =location?.state || '/'
-  const { signIn, signInWithGoogle,resetPassword,loading,setLoading } = useAuth()
+  const from = location?.state || '/'
+  const { signIn, signInWithGoogle, resetPassword, loading, setLoading } = useAuth()
 
-const [email,setEmail]= useState('')
+  const [email, setEmail] = useState('')
 
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    const form = e.target
-    const email = form.email.value
-    const password = form.password.value
+  const onSubmit = async data => {
+    // e.preventDefault()
+    // const form = e.target
+    // const email = form.email.value
+    // const password = form.password.value
+    const { email, password } = data;
 
     try {
       setLoading(true)
       //2. user signIn
-      const result = await signIn(email,password)
+      const result = await signIn(email, password)
       navigate(from)
-      toast.success('signup Successful')
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: " login Successful ",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
     }
     catch (err) {
       setLoading(false)
-      toast.error(err.message)
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "err.message",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      // toast.error(err.message)
     }
   }
   const handleGoogleSignIn = async () => {
-    
+
     try {
       setLoading(true)
       await signInWithGoogle()
@@ -48,18 +68,18 @@ const [email,setEmail]= useState('')
     }
   }
 
-const handleResetPassword =async () =>{
-  if(!email) return  toast.error("please write your email first")
-try{
-  await resetPassword(email)
-  toast.success("request success ! check your email for further process ..")
-}
-catch(err){
-  setLoading(false)
+  const handleResetPassword = async () => {
+    if (!email) return toast.error("please write your email first")
+    try {
+      await resetPassword(email)
+      toast.success("request success ! check your email for further process ..")
+    }
+    catch (err) {
+      setLoading(false)
       toast.error(err.message)
-}
+    }
 
-}
+  }
 
 
   return (
@@ -72,7 +92,8 @@ catch(err){
           </p>
         </div>
         <form
-            onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
+
           className='space-y-6 ng-untouched ng-pristine ng-valid'
         >
           <div className='space-y-4'>
@@ -84,19 +105,33 @@ catch(err){
                 type='email'
                 name='email'
                 id='email'
-                onBlur={e =>setEmail(e.target.value)}
+                {...register("email", { required: true })}
+                onBlur={e => setEmail(e.target.value)}
                 required
                 placeholder='Enter Your Email Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
               />
+              {errors.email && <span className='text-red-500'>This field is required</span>}
             </div>
-            <div>
+
+            <div className="flex items-center gap-x-2 relative">
+              <input type={showpassword ? "text" : "password"} name="password" placeholder="password" className="input input-bordered w-full" required
+                {...register("password", { required: true })} />
+              <span className="absolute right-3" onClick={() => setshowpassword(!showpassword)}>
+                {showpassword ? <FaEye className="text-gray-900"></FaEye> : <IoMdEyeOff className="text-gray-900"></IoMdEyeOff>}
+              </span>
+              {errors.password && <span className='text-red-500'>This field is required</span>}
+
+
+            </div>
+            {/* <div>
               <div className='flex justify-between'>
                 <label htmlFor='password' className='text-sm mb-2'>
                   Password
                 </label>
               </div>
+              
               <input
                 type='password'
                 name='password'
@@ -106,11 +141,12 @@ catch(err){
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
               />
-            </div>
+            </div> */}
+
           </div>
 
           <div>
-          <button
+            <button
               disabled={loading}
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
@@ -132,9 +168,9 @@ catch(err){
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
         <button
-        disabled ={loading}
-        onClick={handleGoogleSignIn} 
-        className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+          disabled={loading}
+          onClick={handleGoogleSignIn}
+          className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>

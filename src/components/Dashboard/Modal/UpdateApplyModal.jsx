@@ -181,7 +181,7 @@ UpdateApplyModal.propTypes = {
   modalHandler: PropTypes.func,
   setIsOpen: PropTypes.func,
   isOpen: PropTypes.bool,
-  id: PropTypes.func,
+  id: PropTypes.string,
   refetch: PropTypes.func,
 }
 

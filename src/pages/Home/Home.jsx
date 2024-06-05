@@ -6,6 +6,8 @@ import ScholarshipItems from "../../components/Home/ScholarshipItems";
 import useScholearShips from "../../hooks/useScholearShips";
 import ContactUs from "../contactus/ContactUs";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Testimonial from "../../components/pages/Testimonial";
 
 
 
@@ -36,9 +38,14 @@ const Home = () => {
                     }
 
                 </div>
+                <div className="flex justify-center items-center">
+                <Link to='/allscholarship' className="py-2 px-6 bg-green-300 rounded inline-block mx-auto  text-center mt-8"> show all </Link>
+                </div>
+               
 <div>
     <ContactUs></ContactUs>
 </div>
+<Testimonial></Testimonial>
 
             </Container>
 

@@ -5,9 +5,13 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from "react-icons/tb";
 import { imageUpload } from '../../utils/index';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { FaEye } from 'react-icons/fa';
+import { IoMdEyeOff } from 'react-icons/io';
 
 const SignUp = () => {
-
+  const [showpassword, setshowpassword] = useState(null)
   const navigate = useNavigate()
   const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useAuth()
   const handleSubmit = async e => {
@@ -18,13 +22,41 @@ const SignUp = () => {
     const email = form.email.value
     const password = form.password.value
     const image = form.image.files[0]
-    // const userinfo = {
-    //   name: name,
-    //   email: email,
-    //   role: 'user',
-    //   status: 'verified',
-    // }
-    // const info = {name,email,password,image}
+    if (password.length < 6) {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "password must have a  6 letter",
+				showConfirmButton: false,
+				timer: 1500
+			});
+			//toast.error('error.message')
+			return
+		}
+    if (/[A-Z]/.test(password)) {
+			Swal.fire({
+					position: "top-end",
+					icon: "error",
+					title: "password don't have a capital letter",
+					showConfirmButton: false,
+					timer: 1500
+				});
+			//toast.error("password must have a  uppercase  letter")
+			return
+		}
+
+		if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: "password don't have a special character",
+				showConfirmButton: false,
+				timer: 1500
+			});
+			//toast.error('password must have a capital letter')
+			return
+		}
+
 
     try {
       setLoading(true)
@@ -118,8 +150,9 @@ const SignUp = () => {
                   Password
                 </label>
               </div>
+              <div className="flex items-center gap-x-2 relative">
               <input
-                type='password'
+               type={showpassword ? "text" : "password"}
                 name='password'
                 autoComplete='new-password'
                 id='password'
@@ -127,6 +160,11 @@ const SignUp = () => {
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
               />
+              <span className="absolute right-3" onClick={() => setshowpassword(!showpassword)}>
+                {showpassword ? <FaEye className="text-gray-900"></FaEye> : <IoMdEyeOff className="text-gray-900"></IoMdEyeOff>}
+              </span>
+              </div>
+              
             </div>
           </div>
 

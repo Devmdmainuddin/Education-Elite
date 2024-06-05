@@ -8,17 +8,17 @@ const ModeratorMenu = () => {
       <MenuItem 
       icon={MdHomeWork} 
       label='Manage Scholearships' 
-      address='manage-scholearships' 
+      address='manage-scholarship' 
       />
       <MenuItem
         icon={MdOutlineManageHistory}
         label='all reviews'
-        address='reviews'
+        address='manage-Reviews'
       />
       <MenuItem 
       icon={MdHomeWork} 
       label='all Applied Scholarship' 
-      address='applied-scholarship' 
+      address='manage-Applied-Application' 
       />
       <MenuItem
         icon={MdOutlineManageHistory}

@@ -1,16 +1,14 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment } from "react";
-
-
-
-const DetailsModal = ({detailsModal,setDetailsModal,}) => {
-  
+import AddReview from "../../pages/AddReview";
+import PropTypes from 'prop-types'
+const AddReviewModal = ({ setAddReview, addReviews,id,ScholarshipName,universityName,scholarshipcategory}) => {
     return (
-        <Transition appear show={detailsModal} as={Fragment}>
+        <Transition appear show={addReviews} as={Fragment}>
         <Dialog
             as='div'
             className='relative z-10'
-            onClose={() => setDetailsModal(false)}
+            onClose={() => setAddReview(false)}
         >
             <TransitionChild
                 as={Fragment}
@@ -35,18 +33,14 @@ const DetailsModal = ({detailsModal,setDetailsModal,}) => {
                         leaveFrom='opacity-100 scale-100'
                         leaveTo='opacity-0 scale-95'
                     >
-                        <DialogPanel className='w-full h-56 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                        <DialogPanel className='w-full  max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
                             <DialogTitle
                                 as='h3'
                                 className='text-lg font-medium text-center leading-6 text-gray-900'
                             >
-                                Give Feedback
-                             
-                        
+                               UpDate Reviews
                             </DialogTitle>
-                          
-                      
-
+                           <AddReview setAddReview={setAddReview} universityName={universityName} ScholarshipName={ScholarshipName} scholarshipcategory={scholarshipcategory} id={id}></AddReview>
                         </DialogPanel>
                     </TransitionChild>
                 </div>
@@ -55,5 +49,8 @@ const DetailsModal = ({detailsModal,setDetailsModal,}) => {
     </Transition>
     );
 };
-
-export default DetailsModal;
+AddReviewModal.propTypes = {
+    setAddReview: PropTypes.func,
+    addReviews: PropTypes.bool,
+}
+export default AddReviewModal;

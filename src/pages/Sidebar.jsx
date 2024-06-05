@@ -75,7 +75,7 @@ const Sidebar = () => {
               <nav>
               <MenuItem
               label='Profile'
-              address='dashboard/profile'
+              address='profile'
               icon={FcSettings}>
             </MenuItem>
                 {role === 'user' && <GuestMenu/>}

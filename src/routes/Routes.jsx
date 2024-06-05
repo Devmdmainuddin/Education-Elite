@@ -18,6 +18,7 @@ import AllScholarship from "../pages/AllScholarship";
 import EditScholarShipForm from "../components/Dashboard/Form/EditScholarShipForm";
 import MyApplication from "../pages/bashboard/user/MyApplication";
 import MyReviews from "../pages/bashboard/user/MyReviews";
+import ApplicationsDetails from "../components/pages/ApplicationsDetails";
 
 
 export const router = createBrowserRouter([
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
       element: <DashboardLayout></DashboardLayout>,
       children: [
         {
-          path:'dashboard/profile',
+          path:'profile',
           element: <Profile></Profile>
         },
         {
@@ -100,6 +101,12 @@ export const router = createBrowserRouter([
           path:'my-application',
           element: <MyApplication></MyApplication>
         },
+        {
+          path:'/Dashboard/manage-Applied-Application/application-details/:id',
+          element: <ApplicationsDetails></ApplicationsDetails>,
+          loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/application-details/${params.id}`)
+        },
+
 
 
 
