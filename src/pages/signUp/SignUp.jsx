@@ -9,11 +9,22 @@ import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { IoMdEyeOff } from 'react-icons/io';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const SignUp = () => {
   const [showpassword, setshowpassword] = useState(null)
+  const axiosCommon = useAxiosCommon()
   const navigate = useNavigate()
   const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useAuth()
+
+
+
+
+  // axiosCommon.put(`/user`, userinfo)
+  //   .then(res => {
+
+  //   })
+
   const handleSubmit = async e => {
     e.preventDefault()
 
@@ -22,40 +33,48 @@ const SignUp = () => {
     const email = form.email.value
     const password = form.password.value
     const image = form.image.files[0]
-    if (password.length < 6) {
-			Swal.fire({
-				position: "top-end",
-				icon: "error",
-				title: "password must have a  6 letter",
-				showConfirmButton: false,
-				timer: 1500
-			});
-			//toast.error('error.message')
-			return
-		}
-    if (/[A-Z]/.test(password)) {
-			Swal.fire({
-					position: "top-end",
-					icon: "error",
-					title: "password don't have a capital letter",
-					showConfirmButton: false,
-					timer: 1500
-				});
-			//toast.error("password must have a  uppercase  letter")
-			return
-		}
 
-		if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-			Swal.fire({
-				position: "top-end",
-				icon: "error",
-				title: "password don't have a special character",
-				showConfirmButton: false,
-				timer: 1500
-			});
-			//toast.error('password must have a capital letter')
-			return
-		}
+    const userinfo = {
+      name: name ,
+      email: email ,
+      role: 'user',
+      status: 'verified',
+    }
+
+    if (password.length < 6) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "password must have a  6 letter",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      //toast.error('error.message')
+      return
+    }
+    if (/[A-Z]/.test(password)) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "password don't have a capital letter",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      //toast.error("password must have a  uppercase  letter")
+      return
+    }
+
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "password don't have a special character",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      //toast.error('password must have a capital letter')
+      return
+    }
 
 
     try {
@@ -66,7 +85,11 @@ const SignUp = () => {
       //2. user ragistration
       const result = await createUser(email, password)
       //2. update user profile
-      await updateUserProfile(name,image_url)
+      await updateUserProfile(name, image_url)
+      axiosCommon.put(`/user`, userinfo)
+        .then(res => {
+
+        })
       navigate('/')
       toast.success('signup Successful')
     }
@@ -79,10 +102,13 @@ const SignUp = () => {
 
   }
   const handleGoogleSignIn = async () => {
-    
+
     try {
       setLoading(true)
       await signInWithGoogle()
+
+     
+
       navigate('/')
       toast.success('signup Successful')
     }
@@ -151,20 +177,20 @@ const SignUp = () => {
                 </label>
               </div>
               <div className="flex items-center gap-x-2 relative">
-              <input
-               type={showpassword ? "text" : "password"}
-                name='password'
-                autoComplete='new-password'
-                id='password'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-              />
-              <span className="absolute right-3" onClick={() => setshowpassword(!showpassword)}>
-                {showpassword ? <FaEye className="text-gray-900"></FaEye> : <IoMdEyeOff className="text-gray-900"></IoMdEyeOff>}
-              </span>
+                <input
+                  type={showpassword ? "text" : "password"}
+                  name='password'
+                  autoComplete='new-password'
+                  id='password'
+                  required
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                />
+                <span className="absolute right-3" onClick={() => setshowpassword(!showpassword)}>
+                  {showpassword ? <FaEye className="text-gray-900"></FaEye> : <IoMdEyeOff className="text-gray-900"></IoMdEyeOff>}
+                </span>
               </div>
-              
+
             </div>
           </div>
 
@@ -185,10 +211,10 @@ const SignUp = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-        <button 
-        disabled ={loading}
-        onClick={handleGoogleSignIn} 
-        className='disabled:cursor-not-allowed flex justify-center  items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+        <button
+          disabled={loading}
+          onClick={handleGoogleSignIn}
+          className='disabled:cursor-not-allowed flex justify-center  items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>

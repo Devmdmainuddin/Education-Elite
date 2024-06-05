@@ -10,8 +10,10 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
 import useReviews from '../../hooks/useReviews';
+import { useState } from 'react';
 
 const Testimonial = () => {
+    const [dataLength, setDataLength] = useState(6);
    const [reviews,loading,refetch]= useReviews()
 //    const {reviewerImage,reviewerName,reviewerEmail,reviewDate,rating,comments,sholarshipName,sholarshipUniversity}=reviews
     return (
@@ -48,7 +50,7 @@ const Testimonial = () => {
                         className="Swiper  w-full "
                     >
                        {
-                        reviews.map(item =><SwiperSlide key={item._id}>
+                        reviews.slice(0, dataLength).map(item =><SwiperSlide key={item._id}>
                             {/* <div className="w-full md:w-1/2 lg:w-1/3 p-3"> */}
                                 <div className="w-full">
                                     <div className="p-6  bg-white bg-opacity-60 border rounded-4xl">

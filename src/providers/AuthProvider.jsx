@@ -67,25 +67,16 @@ const AuthProvider = ({ children }) => {
   //   return data
   // }
 
-  // save user
-  // const saveUser = async userdata => {
-
-  //   console.log(userdata);
-  //   console.log(userdata.email);
-  //   console.log(userdata.displayName);
-
-
-  //   const currentUser = {
-  //     name: userdata?.displayName,
-  //     name2:user?.displayName,
-  //     email: userdata?.email,
-  //     role: 'user',
-  //     status: 'verified',
-  //   }
-  //   console.log(currentUser.name2);
-  //   const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
-  //   return data
-  // }
+  const saveUser = async user =>{
+    const currentUser= {
+      name:user.displayName,
+      email:user?.email,
+      role:'guest',
+      status:'verified',
+    }
+    const {data} = await axiosCommon.put(`/user`,currentUser)
+    return data
+  }
 
 
   // onAuthStateChange
@@ -100,18 +91,18 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         // console.log(currentUser);
-        const userinfo = {
-          name: currentUser?.displayName || user.displayName,
-          email: currentUser?.email || user?.email,
-          role: 'user',
-          status: 'verified',
-        }
-        axiosCommon.put(`/user`, userinfo)
-          .then(res => {
-            // console.log(res.data);
-          })
+        // const userinfo = {
+        //   name: currentUser?.displayName || user.displayName,
+        //   email: currentUser?.email || user?.email,
+        //   role: 'user',
+        //   status: 'verified',
+        // }
+        // axiosCommon.put(`/user`, userinfo)
+        //   .then(res => {
+            
+        //   })
 
-
+        saveUser(currentUser)
 
 
         axiosCommon.post(`/jwt`, loggedUser)
