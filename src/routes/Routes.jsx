@@ -19,7 +19,7 @@ import EditScholarShipForm from "../components/Dashboard/Form/EditScholarShipFor
 import MyApplication from "../pages/bashboard/user/MyApplication";
 import MyReviews from "../pages/bashboard/user/MyReviews";
 import ApplicationsDetails from "../components/pages/ApplicationsDetails";
-
+import PrivateRoute from '../routes/PrivateRoute'
 
 export const router = createBrowserRouter([
     {
@@ -48,11 +48,7 @@ export const router = createBrowserRouter([
         element: <SholarshipDetails />,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
       },
-      {
-        path: "/updateScholarShip/:id",
-        element: <EditScholarShipForm />,
-        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
-      },
+      
       {
         path: "/chackout/:id",
         element:<Chackout></Chackout>,
@@ -67,12 +63,18 @@ export const router = createBrowserRouter([
     },
     {
       path: '/Dashboard',
-      element: <DashboardLayout></DashboardLayout>,
+      element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
       children: [
         {
-          path:'profile',
-          element: <Profile></Profile>
+          index: true,
+          element: (
+           <Profile></Profile>
+          ),
         },
+        // {
+        //   path:'profile',
+        //   element: <Profile></Profile>
+        // },
         {
           path:'add-scholarship',
           element: <AddScholarShip/>
@@ -80,6 +82,11 @@ export const router = createBrowserRouter([
         {
           path:'manage-scholarship',
           element: <ManageScholerShips/>
+        },
+        {
+          path: "/Dashboard/manage-scholarship/updateScholarShip/:id",
+          element: <EditScholarShipForm />,
+          loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
         },
         {
           path:'manage-Applied-Application',

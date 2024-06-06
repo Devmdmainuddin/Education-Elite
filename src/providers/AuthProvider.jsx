@@ -58,14 +58,7 @@ const AuthProvider = ({ children }) => {
   }
 
   // Get token from server
-  // const getToken = async email => {
-  //   const { data } = await axios.post(
-  //     `${import.meta.env.VITE_API_URL}/jwt`,
-  //     { email },
-  //     { withCredentials: true }
-  //   )
-  //   return data
-  // }
+
 
   const saveUser = async user =>{
     const currentUser= {
@@ -86,25 +79,11 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentUser?.email || user?.email;
       const loggedUser = { email: userEmail }
       setUser(currentUser)
+      
       console.log(currentUser?.displayName);
-     
-
+    
       if (currentUser) {
-        // console.log(currentUser);
-        // const userinfo = {
-        //   name: currentUser?.displayName || user.displayName,
-        //   email: currentUser?.email || user?.email,
-        //   role: 'user',
-        //   status: 'verified',
-        // }
-        // axiosCommon.put(`/user`, userinfo)
-        //   .then(res => {
-            
-        //   })
-
         saveUser(currentUser)
-
-
         axiosCommon.post(`/jwt`, loggedUser)
           .then(res => {
             if (res.data.token) {
@@ -116,9 +95,6 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem('access-token')
         setLoading(false)
       }
-
-
-
     })
     return () => {
       unSubscribe();

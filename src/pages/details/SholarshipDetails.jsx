@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 // import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useReviews from "../../hooks/useReviews";
 import { useEffect, useState } from "react";
@@ -19,19 +19,26 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 
 const SholarshipDetails = () => {
+    const [dataLength, setDataLength] = useState(6);
     const { user } = useAuth() || {}
     const axiosSecure = useAxiosSecure()
-    const [reviews, loading, refetch] = useReviews()
+    // const [reviews, loading, refetch] = useReviews()
     const sholarship = useLoaderData();
-    const [userReview, setuserReview] = useState([])
+    // const [userReview, setuserReview] = useState([])
 
-    useEffect(() => {
-        const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)
-       
-        setuserReview(filteritems)
-       
+    // useEffect(() => {
+    //     const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)  
+    //     setuserReview(filteritems) 
+    // }, [reviews,sholarship,])
 
-    }, [reviews, sholarship])
+    const { data: review = [], isPending:loading, refetch } = useQuery({
+        queryKey: ['review'],
+        queryFn: async() => {
+          const { data } = await axiosSecure.get(`/reviews/${sholarship._id}`)
+          return data
+        },
+      })
+
 
 
 
@@ -84,6 +91,7 @@ const SholarshipDetails = () => {
 
         try {
             console.log(reviewData);
+            refetch()
             await mutateAsync(reviewData)
             form.reset()
         }
@@ -272,8 +280,7 @@ const SholarshipDetails = () => {
                 className="Swiper h-[442px]  w-full "
             >
                 {
-                    userReview.map(review =>
-                        <SwiperSlide key={review._id} className='flex justify-center items-center gap-x-4'>
+                    review.slice(0, dataLength).map(review =><SwiperSlide key={review._id} className='flex justify-center items-center gap-x-4'>
                             {/* {review.comments} */}
                             <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8 ">
                                 <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />

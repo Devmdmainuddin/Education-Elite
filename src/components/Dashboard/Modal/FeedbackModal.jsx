@@ -11,6 +11,7 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import Swal from 'sweetalert2'
+import { IoClose } from 'react-icons/io5'
 
 const FeedbackModal = ({ setOpenFeedback, openFeedback, id, refetch }) => {
     const axiosSecure = useAxiosSecure()
@@ -77,13 +78,14 @@ const FeedbackModal = ({ setOpenFeedback, openFeedback, id, refetch }) => {
                             leaveFrom='opacity-100 scale-100'
                             leaveTo='opacity-0 scale-95'
                         >
-                            <DialogPanel className='w-full h-56 max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                            <DialogPanel className='w-full  max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
                                 <DialogTitle
                                     as='h3'
                                     className='text-lg font-medium text-center leading-6 text-gray-900'
                                 >
                                     Give Feedback
                                 </DialogTitle>
+                                <IoClose onClick={() => setOpenFeedback(false)}  className="text-3xl ml-auto bg-red-300 rounded"/>
                                 <form action="" onSubmit={handleFeedback}>
                                     <label className="block mb-2 mt-4 dark:text-white" htmlFor="Comments">Comments</label>
                                     <textarea
@@ -98,8 +100,6 @@ const FeedbackModal = ({ setOpenFeedback, openFeedback, id, refetch }) => {
                                         value="Add feedback"
                                     />
                                 </form>
-
-
                             </DialogPanel>
                         </TransitionChild>
                     </div>

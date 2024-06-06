@@ -11,10 +11,14 @@ import 'swiper/css/navigation';
 import { Pagination, Autoplay } from 'swiper/modules';
 import useReviews from '../../hooks/useReviews';
 import { useState } from 'react';
+import LoadingSpinner from '../Shared/LoadingSpinner';
 
 const Testimonial = () => {
     const [dataLength, setDataLength] = useState(6);
-   const [reviews,loading,refetch]= useReviews()
+   const [reviews,loading]= useReviews()
+
+
+   if (loading ) return <LoadingSpinner />
 //    const {reviewerImage,reviewerName,reviewerEmail,reviewDate,rating,comments,sholarshipName,sholarshipUniversity}=reviews
     return (
         <div className="py-16 bg-gray-50">

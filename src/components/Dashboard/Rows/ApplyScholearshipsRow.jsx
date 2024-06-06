@@ -4,12 +4,11 @@ import UpdateApplyModal from '../Modal/UpdateApplyModal'
 import { useState } from 'react'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { useMutation } from '@tanstack/react-query'
-// import toast from 'react-hot-toast'
 import { FaRegEdit } from 'react-icons/fa';
 import FeedbackModal from "../Modal/FeedbackModal";
 import Swal from "sweetalert2";
 import DetailsModal from "../Modal/DetailsModal";
-import { Link } from 'react-router-dom';
+
 
 const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
   const { _id, ScholarshipName, SubjectCategorey, universityName, Degree, applicationfees, status } = scholarship
@@ -63,14 +62,6 @@ const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
 
   }
 
-
-
-
-
-
-
-
-
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -104,26 +95,29 @@ const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
         {/* Update User Modal */}
         <UpdateApplyModal isOpen={isOpen} setIsOpen={setIsOpen} id={_id} refetch={refetch} stat={status} ></UpdateApplyModal>
       </td>
-
-
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
 
-        <Link to={`application-details/${_id}`}> 
         <button onClick={() => setDetailsModal(true)} className='cursor-pointer inline-block px-3 py-1 bg-[#dddfdf] rounded-full font-semibold  leading-tight'>
             Details
           </button>
-         </Link>
-          
-       
-
         {/* {Details feedback} */}
-        <DetailsModal detailsModal={detailsModal} setDetailsModal={setDetailsModal}>   </DetailsModal>
+        <DetailsModal 
+        detailsModal={detailsModal} 
+        setDetailsModal={setDetailsModal} 
+        ScholarshipName={ScholarshipName}     
+        universityName={universityName}
+        SubjectCategorey={SubjectCategorey}
+        Degree={Degree}>   
+        </DetailsModal>
+
         <button onClick={() => setOpenFeedback(true)} className=' rounded-full bg-green-200 relative cursor-pointer flex gap-x-2 items-center px-3 py-1 font-semibold text-green-900 leading-tight'>
           Feedback
           <span className=''><FaRegEdit></FaRegEdit></span>
         </button>
+
         {/* {update feedback} */}
         <FeedbackModal openFeedback={openFeedback} setOpenFeedback={setOpenFeedback} id={_id} refetch={refetch}> </FeedbackModal>
+        
         <button onClick={() => handleDelet(scholarship._id)} className='cursor-pointer inline-block px-3 py-1 bg-red-200  rounded-full font-semibold text-red-900 leading-tight'>
           Cancel
         </button>

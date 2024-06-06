@@ -1,12 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
+
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ContactUs = () => {
     const { user } = useAuth()
-
+    const axiosSecure = useAxiosSecure()
     const { mutateAsync } = useMutation({
         mutationFn: async info => {
             const { data } = await axiosSecure.post(`/contactUs`, info)

@@ -27,10 +27,10 @@ const ManageScholearshipsRow = ({ scholarship, handleDelete }) => {
                 
                 {/* Update User Modal */}
                 {/* <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen} modalHandler={modalHandler} user={user}></UpdateUserModal> */}
-                <Link className='cursor-pointer inline-block px-3 py-1 bg-green-200  rounded-full font-semibold text-red-900 leading-tight'>
+                <Link to={`/ScholarShip/${scholarship._id}`} className='cursor-pointer inline-block px-3 py-1 bg-green-200  rounded-full font-semibold text-red-900 leading-tight'>
                 <BiDetail />
                 </Link>
-                <Link to={`/updateScholarShip/${scholarship._id} `} className='cursor-pointer inline-block px-3 py-1 bg-green-300   rounded-full font-semibold text-red-900 leading-tight'>
+                <Link to={`updateScholarShip/${scholarship._id} `} className='cursor-pointer inline-block px-3 py-1 bg-green-300   rounded-full font-semibold text-red-900 leading-tight'>
                 <FaRegEdit />
                 </Link>
                 <button onClick={() => handleDelete(scholarship._id)} className='cursor-pointer inline-block px-3 py-1 bg-red-200  rounded-full font-semibold text-red-900 leading-tight'>
