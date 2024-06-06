@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
     const currentUser= {
       name:user.displayName,
       email:user?.email,
-      role:'guest',
+      role:'user',
       status:'verified',
     }
     const {data} = await axiosCommon.put(`/user`,currentUser)

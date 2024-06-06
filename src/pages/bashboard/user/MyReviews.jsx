@@ -11,13 +11,12 @@ const MyReviews = () => {
     const axiosSecure = useAxiosSecure()
     //   Fetch Rooms Data
     const { data: myreviews = [], isLoading, refetch, } = useQuery({
-        queryKey: ['myreviews'],
+        queryKey: ['review'],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/reviews/${user?.email}`)
+            const { data } = await axiosSecure.get(`/review/${user?.email}`)
             return data
         },
     })
-
     //   delete
     const { mutateAsync } = useMutation({
         mutationFn: async id => {
@@ -63,34 +62,34 @@ const MyReviews = () => {
                 <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
                     <table className='min-w-full leading-normal'>
                         <thead>
-                            <tr>
+                            <tr className="bg-[#d98787]">
                                 <th
                                     scope='col'
-                                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    className='px-5 py-3 bg-[#ecfaf4fa]  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                 >
                                     Scholarship name
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    className='px-5 py-3 bg-[#ecfaf4fa]  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                 >
                                     university name
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    className='px-5 py-3 bg-[#ecfaf4fa]  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                 >
                                     Review comments
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    className='px-5 py-3 bg-[#ecfaf4fa]  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                 >
                                     Review date
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    className='px-5 py-3 bg-[#ecfaf4fa]  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                 >
                                     Action
                                 </th>

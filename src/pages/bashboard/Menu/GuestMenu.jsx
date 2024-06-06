@@ -1,6 +1,7 @@
 import { BsFingerprint } from 'react-icons/bs'
 // import { GrUserAdmin } from 'react-icons/gr'
 import MenuItem from './/MenuItem'
+import { FcSettings } from 'react-icons/fc'
 
 // import useRole from '../../../hooks/useRole'
 
@@ -8,7 +9,11 @@ const GuestMenu = () => {
   // const [role] = useRole()
   return (
     <>
-    
+    <MenuItem
+        label='Profile'
+        address='profile'
+        icon={FcSettings}>
+      </MenuItem>
       <MenuItem
         icon={BsFingerprint}
         label='My Application'

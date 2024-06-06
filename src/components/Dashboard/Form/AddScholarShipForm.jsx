@@ -69,7 +69,7 @@ const AddScholarShipForm = () => {
 
             <div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="card-body max-w-lg mx-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body max-w-lg mx-auto border my-6 font-Inter capitalize">
                     <h1 className="text-3xl font-bold text-center">add scholarship</h1>
                     <div className="form-control">
                         <label htmlFor="text" className="label">
@@ -230,7 +230,7 @@ const AddScholarShipForm = () => {
 
 
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">add items</button>
+                        <button className="btn bg-[#bef2f5] capitalize">add  scholarship</button>
                     </div>
                 </form>
             </div>

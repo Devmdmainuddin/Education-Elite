@@ -66,18 +66,10 @@ const Sidebar = () => {
               </div>
             </div>
   
-            {/* Nav Items */}
+         
             <div className='flex flex-col justify-between flex-1 mt-6'>
-              {/* Conditional toggle button here.. */}
-              {/* {role === 'host' && <ToggleBtn toggleHandler={toggleHandler}></ToggleBtn>} */}
-  
-              {/*  Menu Items */}
+          
               <nav>
-              <MenuItem
-              label='Profile'
-              address='profile'
-              icon={FcSettings}>
-            </MenuItem>
                 {role === 'user' && <GuestMenu/>}
                 {role === 'moderator' && <ModeratorMenu/>}
                 {role === 'admin' && <AdminMenu/>}
@@ -95,6 +87,7 @@ const Sidebar = () => {
   
               <span className='mx-4 font-medium'>Logout</span>
             </button>
+            
           </div>
         </div>
       </>

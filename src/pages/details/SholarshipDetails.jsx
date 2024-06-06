@@ -122,82 +122,51 @@ const SholarshipDetails = () => {
                             </div>
                         </div>
                         <div className="md:flex-1 px-4">
-                            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{sholarship.UniversityName}</h2>
+                            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{sholarship.ScholarshipName}</h2>
                             <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                                {sholarship.ScholarshipCategory}
+                                {sholarship.UniversityName}
                             </p>
                             <div className="flex mb-4">
                                 <div className="mr-4">
-                                    <span className="font-bold text-gray-700 dark:text-gray-300">price : </span>
-                                    <span className="text-gray-600 dark:text-gray-300"></span>
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">location : <p className="text-sm text-gray-600">{sholarship.location.Country} , {sholarship.location.city}</p> </span>
                                 </div>
-                                <div>
-                                    <span className="font-bold text-gray-700 dark:text-gray-300">In Stock : </span>
-                                    <span className="text-gray-600 dark:text-gray-300">{sholarship.ApplicationDeadline}</span>
+                                
+                            </div>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">Subject Categorey : <p className="text-sm text-gray-600">{sholarship.SubjectCategorey} </p> </span>
                                 </div>
+                                
                             </div>
-
-
-                            <div className="py-5">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <div className="flex items-center gap-x-2"><FaCaravan className="text-2xl" /><span> SHIPPING & RETURNS</span></div>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-neutral-600">We may offer discounts or promotions
-                                        from time to time. To stay up-to-date on the latest deals and special offers, you can sign
-                                        up for the company{`'`}s newsletter or follow it on social media.
-                                    </p>
-                                </details>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">Scholarship Category : <p className="text-sm text-gray-600">{sholarship.ScholarshipCategory}</p> </span>
+                                </div>
+                                
                             </div>
-                            <div className="py-5">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <div className="flex items-center gap-x-2"><FaCartArrowDown className="text-2xl" /><span> CARE INSTRUCTIONS</span></div>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-neutral-600">We may offer discounts or promotions
-                                        from time to time. To stay up-to-date on the latest deals and special offers, you can sign
-                                        up for the company{`'`}s newsletter or follow it on social media.
-                                    </p>
-                                </details>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">Degree : <p className="text-sm text-gray-600">{sholarship.Degree}</p> </span>
+                                </div>
+                                
                             </div>
-                            <div className="py-5">
-                                <details className="group">
-                                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                                        <span> SHARE</span>
-                                        <span className="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shapeRendering="geometricPrecision"
-                                                stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                                strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <p className="group-open:animate-fadeIn mt-3 text-neutral-600">We may offer discounts or promotions
-                                        from time to time. To stay up-to-date on the latest deals and special offers, you can sign
-                                        up for the company{`'`}s newsletter or follow it on social media.
-                                    </p>
-                                </details>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">TuitionFees : <p className="text-sm text-gray-600">{sholarship.TuitionFees}$</p> </span>
+                                </div>
+                                
                             </div>
-
-                            <div>
-                                <span className="font-bold text-gray-700 dark:text-gray-300">Product Description:</span>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                                    {sholarship.Degree}
-                                </p>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">ServiceCharge : <p className="text-sm text-gray-600">{sholarship.ServiceCharge}$</p> </span>
+                                </div>
+                                
+                            </div>
+                            <div className="flex mb-4">
+                                <div className="mr-4">
+                                    <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">ServiceCharge : <p className="text-sm text-gray-600">{sholarship.ServiceCharge}$</p> </span>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -286,10 +255,10 @@ const SholarshipDetails = () => {
                                 <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
                                 <div className="pl-4 pt-4 flex items-start justify-between">
                                     <div className="mr-6">
-                                        <p className="xl:text-xl xl:leading-loose text-gray-600">This website has a bunch of amazing components which improves my design</p>
-                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">Anna Smith</p>
+                                        <p className="xl:text-xl xl:leading-loose text-gray-600">{review.comments}</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">{review.reviewerName}</p>
                                     </div>
-                                    <img src="https://cdn.tuk.dev/assets/components/26May-update/avatar-1.png" alt="Display Avatar of Anna Smith" role="img" />
+                                    <img src={review.reviewerImage} className="w-10 rounded-full"  alt="Display Avatar of Anna Smith" role="img" />
                                 </div>
                             </div>
                         </SwiperSlide>

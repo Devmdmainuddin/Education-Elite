@@ -20,7 +20,8 @@ import MyApplication from "../pages/bashboard/user/MyApplication";
 import MyReviews from "../pages/bashboard/user/MyReviews";
 import ApplicationsDetails from "../components/pages/ApplicationsDetails";
 import PrivateRoute from '../routes/PrivateRoute'
-
+import AdminHomeRechart from "../pages/bashboard/Admin/AdminHomeRechart";
+import AdminRoute from '../routes/AdminRoute'
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -45,18 +46,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/ScholarShip/:id",
-        element: <SholarshipDetails />,
+        element:<PrivateRoute><SholarshipDetails /></PrivateRoute> ,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
       },
       
       {
         path: "/chackout/:id",
-        element:<Chackout></Chackout>,
+        element:<PrivateRoute><Chackout></Chackout></PrivateRoute>,
         loader:({ params })=>fetch(`${import.meta.env.VITE_API_URL}/ScholarShips/${params.id}`)
       },
       {
         path: "/payment",
-        element: <Payment />,
+        element:  <Payment />,
       },
 
     ],
@@ -66,39 +67,41 @@ export const router = createBrowserRouter([
       element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
       children: [
         {
-          index: true,
+        // index: true,
+       path:'profile',
           element: (
-           <Profile></Profile>
+             <Profile></Profile>
           ),
         },
-        // {
-        //   path:'profile',
-        //   element: <Profile></Profile>
-        // },
+        {
+          index: true,
+          // path:'adminHome',
+          element:<PrivateRoute> <AdminRoute><AdminHomeRechart></AdminHomeRechart></AdminRoute></PrivateRoute>
+        },
         {
           path:'add-scholarship',
-          element: <AddScholarShip/>
+          element:<PrivateRoute><AddScholarShip/></PrivateRoute> 
         },
         {
           path:'manage-scholarship',
-          element: <ManageScholerShips/>
+          element:<PrivateRoute><ManageScholerShips/></PrivateRoute> 
         },
         {
           path: "/Dashboard/manage-scholarship/updateScholarShip/:id",
-          element: <EditScholarShipForm />,
+          element: <PrivateRoute><EditScholarShipForm /></PrivateRoute>,
           loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/ScholarShip/${params.id}`)
         },
         {
           path:'manage-Applied-Application',
-          element: <ManageAppliedApplication/>
+          element:<PrivateRoute><ManageAppliedApplication/></PrivateRoute> 
         },
         {
           path:'manage-Reviews',
-          element: <ManageReview/>
+          element:<PrivateRoute> <ManageReview/></PrivateRoute>
         },
         {
           path:'manage-Users',
-          element: <ManageUsers></ManageUsers>
+          element:<PrivateRoute><AdminRoute><ManageUsers></ManageUsers></AdminRoute> </PrivateRoute>
         },
         {
           path:'my-reviews',

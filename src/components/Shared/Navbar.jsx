@@ -30,22 +30,18 @@ const Navbar = () => {
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
                 {/* Become A Host btn */}
-                <div className='hidden md:flex items-center'>
+                <div className='hidden md:flex gap-x-6 items-center'>
+                  <NavLink to='/'>Home</NavLink>
+
                   <NavLink to='/allScholarship'>All Scholarship</NavLink>
-                  <Link
-                          to='/Dashboard'
-                          className='block  px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                        >
-                          Desboard
-                        </Link>
-                  {!user && (
-                  <button
-                        // disabled={!user}
-                        // onClick={()=>setIsModalOpen(true)}
-                        className=' cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
-                      >
-                        Host your home
-                    </button>
+                  
+                  {user && (
+                 <NavLink
+                 to='/Dashboard'
+                 className='block  px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+               >
+                 Desboard
+               </NavLink>
                   )}
                 </div>
                 {/* <HostModal isOpen={isModalOpen} closeModel={closeModel} modelHandler={modelHandler}></HostModal>  */}
