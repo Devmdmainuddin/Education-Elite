@@ -1,6 +1,7 @@
 
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment } from "react";
+import { IoClose } from "react-icons/io5";
 
 
 const UpdateReview = ({ setIsOpen, isOpen,rating, comment,modalHandler }) => {
@@ -44,6 +45,7 @@ const UpdateReview = ({ setIsOpen, isOpen,rating, comment,modalHandler }) => {
                             >
                                UpDate Reviews
                             </DialogTitle>
+                            <IoClose onClick={() => setIsOpen(false)}  className="text-3xl ml-auto bg-red-300 rounded"/>
                             <form action="" onSubmit={modalHandler}>
 
                             <label
@@ -59,7 +61,7 @@ const UpdateReview = ({ setIsOpen, isOpen,rating, comment,modalHandler }) => {
                                 min={1}
                                 type="number"
                                 defaultValue={rating}
-                                placeholder="Enter Rating"
+                                placeholder="Enter Rating 1 to 5"
                                 id="rating"
                                 name="rating"
                             />

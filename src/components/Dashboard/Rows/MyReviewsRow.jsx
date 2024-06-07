@@ -80,6 +80,6 @@ MyReviewsRow.propTypes = {
     review: PropTypes.object,
     handleDelete: PropTypes.func,
     refetch: PropTypes.func,
-    isLoading : PropTypes.boolean,
+    isLoading : PropTypes.bool,
 }
 export default MyReviewsRow;

@@ -1,8 +1,9 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment } from "react";
+import { IoClose } from "react-icons/io5";
+import PropTypes from 'prop-types'
 
-
-const UpdateApplyInfo = ({ setIsOpen, isOpen, modalHandler, universityName, SubjectCategorey }) => {
+const UpdateApplyInfo = ({ setIsOpen, isOpen, modalHandler, universityName }) => {
 
     // const universityName = ['user', 'moderator', 'admin']
     // const subjectCategorey = ['user', 'moderator', 'admin']
@@ -47,6 +48,7 @@ const UpdateApplyInfo = ({ setIsOpen, isOpen, modalHandler, universityName, Subj
                                 >
                                     UpDate application Info
                                 </DialogTitle>
+                                <IoClose onClick={() => setIsOpen(false)} className="text-3xl ml-auto bg-red-300 rounded" />
                                 <form action="" onSubmit={modalHandler}>
                                     <label className="block mb-2 mt-4 dark:text-white" htmlFor="universityName">university Name</label>
                                     <input
@@ -124,5 +126,12 @@ const UpdateApplyInfo = ({ setIsOpen, isOpen, modalHandler, universityName, Subj
         </Transition>
     );
 };
-
+//  setIsOpen, isOpen, modalHandler
+UpdateApplyInfo.propTypes = {
+    setIsOpen: PropTypes.func,
+    isOpen: PropTypes.bool,
+    modalHandler: PropTypes.func,
+    universityName: PropTypes.string,
+  
+}
 export default UpdateApplyInfo;

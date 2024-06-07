@@ -3,7 +3,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import Swal from 'sweetalert2'
 import { IoClose } from 'react-icons/io5'
 import { Fragment } from 'react';
-
+import PropTypes from 'prop-types'
 import {
     Dialog,
     Transition,
@@ -94,7 +94,7 @@ const UpdateProfileModal = ({ setIsOpen, isOpen,email }) => {
                                     as='h3'
                                     className='text-lg font-medium text-center leading-6 text-gray-900'
                                 >
-                                    Give Feedback
+                                    Update profile
                                 </DialogTitle>
                                 <IoClose onClick={() => setIsOpen(false)} className="text-3xl ml-auto bg-red-300 rounded" />
                                 <form action="" onSubmit={handleSubmit}>
@@ -139,5 +139,11 @@ const UpdateProfileModal = ({ setIsOpen, isOpen,email }) => {
         </Transition>
     );
 };
+// setIsOpen, isOpen,email
+UpdateProfileModal.propTypes = {
+    setIsOpen: PropTypes.func,
+    isOpen: PropTypes.bool,
+    email: PropTypes.string,
 
+}
 export default UpdateProfileModal;

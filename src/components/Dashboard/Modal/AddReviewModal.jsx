@@ -2,6 +2,7 @@ import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@
 import { Fragment } from "react";
 import AddReview from "../../pages/AddReview";
 import PropTypes from 'prop-types'
+import { IoClose } from "react-icons/io5";
 const AddReviewModal = ({ setAddReview, addReviews,id,ScholarshipName,universityName,scholarshipcategory}) => {
     return (
         <Transition appear show={addReviews} as={Fragment}>
@@ -38,8 +39,9 @@ const AddReviewModal = ({ setAddReview, addReviews,id,ScholarshipName,university
                                 as='h3'
                                 className='text-lg font-medium text-center leading-6 text-gray-900'
                             >
-                               UpDate Reviews
+                               Add Reviews
                             </DialogTitle>
+                            <IoClose onClick={() => setAddReview(false)} className="text-3xl ml-auto bg-red-300 rounded" />
                            <AddReview setAddReview={setAddReview} universityName={universityName} ScholarshipName={ScholarshipName} scholarshipcategory={scholarshipcategory} id={id}></AddReview>
                         </DialogPanel>
                     </TransitionChild>
@@ -52,5 +54,9 @@ const AddReviewModal = ({ setAddReview, addReviews,id,ScholarshipName,university
 AddReviewModal.propTypes = {
     setAddReview: PropTypes.func,
     addReviews: PropTypes.bool,
+    id: PropTypes.string,
+    ScholarshipName: PropTypes.string,
+    universityName: PropTypes.string,
+    scholarshipcategory: PropTypes.string,
 }
 export default AddReviewModal;

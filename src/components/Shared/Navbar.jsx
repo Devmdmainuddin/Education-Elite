@@ -16,7 +16,8 @@ const Navbar = () => {
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
             {/* Logo */}
-            <Link to='/'>
+            <div className='flex justify-center items-center'>
+            <Link to='/' className='flex justify-center items-center'>
               <img
                 // className='hidden md:block'
                 src={logo}
@@ -25,15 +26,19 @@ const Navbar = () => {
                 height='60'
                 className=' rounded-full'
               />
+               Education-Elite
             </Link>
+           
+            </div>
+            
             {/* Dropdown Menu */}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
                 {/* Become A Host btn */}
                 <div className='hidden md:flex gap-x-6 items-center'>
-                  <NavLink to='/'>Home</NavLink>
+                  <NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink>
 
-                  <NavLink to='/allScholarship'>All Scholarship</NavLink>
+                  <NavLink to='/allScholarship' className={({ isActive }) => (isActive ? 'active' : 'default')}>All Scholarship</NavLink>
                   
                   {user && (
                  <NavLink
@@ -77,6 +82,13 @@ const Navbar = () => {
 
                     {user ? (
                       <>
+                      <Link
+                          to='/allScholarship'
+                          className='block  px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                        >
+                         All Scholarship
+                        </Link>
+
                         <Link
                           to='/Dashboard'
                           className='block  px-4 py-3 hover:bg-neutral-100 transition font-semibold'

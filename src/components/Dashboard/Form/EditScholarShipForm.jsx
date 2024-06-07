@@ -4,12 +4,24 @@ import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../utils";
 import { useForm } from "react-hook-form";
-// import { imageUpload } from "../../../utils";
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'
+import { useState } from "react";
 
 
 const EditScholarShipForm = () => {
     const { register, handleSubmit } = useForm();
     const sholarship = useLoaderData();
+    const [dates, setDates] = useState({
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection'
+    });
+ 
+    const handleDates = item => {
+        setDates(item.selection)
+    }
     // console.log(sholarship);
     const axiosSecure = useAxiosSecure()
     const { mutateAsync } = useMutation({
@@ -48,7 +60,8 @@ const EditScholarShipForm = () => {
             TuitionFees: data.TuitionFees,
             ApplicationFees: data.ApplicationFees,
             ServiceCharge: data.ServiceCharge,
-            ApplicationDeadline: data.ApplicationDeadline,
+            ApplicationDeadline:dates.endDate,
+           
         }
         console.log(ScholarShipItem);
 
@@ -240,10 +253,16 @@ const EditScholarShipForm = () => {
                         <label htmlFor="Application-Deadline" className="label">
                             <span className="label-text">Application Deadline</span>
                         </label>
-                        <input type="number" 
-                         {...register("ApplicationDeadline",)}
-                        
-                        defaultValue={sholarship.ApplicationDeadline} placeholder="type  Service charge" name="ApplicationDeadline" id="text" className="input input-bordered" required />
+                        <DateRange
+                        //  {...register("[dates]",)}
+                                showDateDisplay={false}
+                                rangeColors={['#F6536D']}
+                                editableDateInputs={true}
+                                onChange={item => handleDates(item)}
+                                moveRangeOnFirstSelection={false}
+                                ranges={[dates]}
+                            />
+                       
                     </div>
 
 

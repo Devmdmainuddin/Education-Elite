@@ -4,9 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-
-
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 // import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
 import useReviews from '../../hooks/useReviews';
@@ -15,11 +14,11 @@ import LoadingSpinner from '../Shared/LoadingSpinner';
 
 const Testimonial = () => {
     const [dataLength, setDataLength] = useState(6);
-   const [reviews,loading]= useReviews()
+    const [reviews, loading] = useReviews()
 
 
-   if (loading ) return <LoadingSpinner />
-//    const {reviewerImage,reviewerName,reviewerEmail,reviewDate,rating,comments,sholarshipName,sholarshipUniversity}=reviews
+    if (loading) return <LoadingSpinner />
+    //    const {reviewerImage,reviewerName,reviewerEmail,reviewDate,rating,comments,sholarshipName,sholarshipUniversity}=reviews
     return (
         <div className="py-16 bg-gray-50">
 
@@ -30,19 +29,19 @@ const Testimonial = () => {
                     <p className="mt-4 text-base leading-normal text-gray-600 md:w-2/3 lg:w-3/4 pr-6 lg:pr-0">Over 500 companies use our product to understand their business and marketing better.</p>
                     <button className=" px-8 py-4 mt-4 bg-teal-500 hover:teal-400 rounded text-base font-medium leading-none text-center text-white">Read success stories</button>
                 </div>
-                <div  className="">
+                <div className="">
                     <Swiper
                         // direction={'vertical'}
                         loop={true}
                         slidesPerView={1}
-                            spaceBetween={1}
-                            breakpoints={{
-                                  992: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 24,
-                                  },
-                                
-                              }}
+                        spaceBetween={1}
+                        breakpoints={{
+                            992: {
+                                slidesPerView: 2,
+                                spaceBetween: 24,
+                            },
+
+                        }}
                         pagination={{
                             clickable: true,
                         }}
@@ -53,9 +52,9 @@ const Testimonial = () => {
                         modules={[Pagination, Autoplay]}
                         className="Swiper  w-full "
                     >
-                       {
-                        reviews.slice(0, dataLength).map(item =><SwiperSlide key={item._id}>
-                            {/* <div className="w-full md:w-1/2 lg:w-1/3 p-3"> */}
+                        {
+                            reviews.slice(0, dataLength).map(item => <SwiperSlide key={item._id}>
+                                {/* <div className="w-full md:w-1/2 lg:w-1/3 p-3"> */}
                                 <div className="w-full">
                                     <div className="p-6  bg-white bg-opacity-60 border rounded-4xl">
                                         <div className="flex flex-col justify-between">
@@ -64,6 +63,11 @@ const Testimonial = () => {
                                                     <div className="w-auto p-2">
                                                         <img src={item.reviewerImage} alt="" className='w-12 h-12 rounded-full' />
                                                     </div>
+                                                    <Rating
+                                                        style={{ maxWidth: 180, fontSize:22}}
+                                                        value={item.rating}
+                                                        readOnly
+                                                    />
                                                     <div className="w-auto p-2">
                                                         <h3 className="font-semibold leading-normal">{item.reviewerName}</h3>
                                                         <p className="text-gray-500 uppercase">{item.sholarshipUniversity}</p>
@@ -77,15 +81,15 @@ const Testimonial = () => {
                                         </div>
                                     </div>
                                 </div>
-                    
+
                             </SwiperSlide>)
-                       }
-                     
-                    
-                       
+                        }
+
+
+
 
                     </Swiper>
-                  
+
                 </div>
             </div>
         </div>

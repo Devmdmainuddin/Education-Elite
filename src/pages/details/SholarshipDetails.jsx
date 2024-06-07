@@ -1,23 +1,22 @@
 import { Helmet } from "react-helmet-async";
-import { FaCaravan, FaCartArrowDown } from "react-icons/fa";
+// import { FaCaravan, FaCartArrowDown } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 // import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useReviews from "../../hooks/useReviews";
-import { useEffect, useState } from "react";
+// import useReviews from "../../hooks/useReviews";
+import {  useState } from "react";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-// import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
-
-
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 const SholarshipDetails = () => {
     const [dataLength, setDataLength] = useState(6);
     const { user } = useAuth() || {}
@@ -116,7 +115,7 @@ const SholarshipDetails = () => {
                             </div>
                             <div className="flex -mx-2 mb-4 justify-center">
                                 <div className="w-1/2 px-2">
-                                    <Link to={`/chackout/${sholarship._id}`}> <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Apply Scholarship</button> </Link>
+                                    <Link to={`/chackout/${sholarship._id}`}> <button className="inline-block w-full rounded bg-teal-500 mt-4 px-4 py-3 text-sm font-medium text-white transition  focus:outline-none focus:ring active:bg-indigo-500">Apply Scholarship</button> </Link>
                                 </div>
 
                             </div>
@@ -253,6 +252,11 @@ const SholarshipDetails = () => {
                             {/* {review.comments} */}
                             <div role="listitem" className="bg-white shadow rounded p-4 xl:p-8 ">
                                 <img src="https://cdn.tuk.dev/assets/components/26May-update/quote.png" aria-hidden="true" />
+                                <Rating
+                                style={{ maxWidth: 180 }}
+                                value={review.rating}
+                                readOnly
+                            />
                                 <div className="pl-4 pt-4 flex items-start justify-between">
                                     <div className="mr-6">
                                         <p className="xl:text-xl xl:leading-loose text-gray-600">{review.comments}</p>

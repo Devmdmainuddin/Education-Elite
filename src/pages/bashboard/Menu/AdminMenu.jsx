@@ -8,7 +8,7 @@ const AdminMenu = () => {
       <MenuItem
         icon={FaUserCog}
         label='adminHome'
-        address='adminHome' />
+        address='/dashboard' />
       <MenuItem
         label='Profile'
         address='profile'

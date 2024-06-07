@@ -1,6 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import Swal from "sweetalert2";
 
+import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -42,7 +41,6 @@ const ContactUs = () => {
             username: user.displayName,
             useremail: user?.email,
         }
-        console.log(info);
         try {
             await mutateAsync(info)
         }
@@ -59,9 +57,7 @@ const ContactUs = () => {
 
     return (
         <section className="bg-white dark:bg-gray-900 max-w-[1200px] mx-auto">
-            <Helmet>
-                <title>Education Elite | contact </title>
-            </Helmet>
+           
             <div className="container px-6 py-12 mx-auto">
                 <div className="lg:flex lg:items-center lg:-mx-6">
                     <div className="lg:w-1/2 lg:mx-6">

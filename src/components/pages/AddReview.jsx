@@ -1,10 +1,8 @@
 import Swal from "sweetalert2";
-// import useAuth from "./useAuth";
-// import useAxiosSecure from "./useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import PropTypes from 'prop-types'
 const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAddReview}) => {
     const { user } = useAuth() || {}
     const axiosSecure = useAxiosSecure()
@@ -68,7 +66,7 @@ const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAdd
 
     return (
            <div className="py-8 px-4">
-        <h2 className="text-center text-2xl text-slate-600 my-7">Add A review</h2>
+        
         <form onSubmit={handleReviews} className='mt-12 max-w-[768px] mx-auto'>
             <div className="flex gap-8 ">
                 <div className="flex-1 items-start">
@@ -115,5 +113,13 @@ const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAdd
     </div>
     );
 };
+// id,ScholarshipName,universityName,scholarshipcategory,setAddReview
+AddReview.propTypes = {
+    id: PropTypes.string,
+    ScholarshipName: PropTypes.string,
+    universityName: PropTypes.string,
+    scholarshipcategory: PropTypes.string,
+    setAddReview: PropTypes.func,
+}
 
 export default AddReview;

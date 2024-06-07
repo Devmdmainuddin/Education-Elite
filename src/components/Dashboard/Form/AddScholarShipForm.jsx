@@ -3,12 +3,25 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { imageUpload } from "../../../utils";
 import useAuth from "../../../hooks/useAuth";
+import { DateRange } from 'react-date-range';
+import { useState } from "react";
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const AddScholarShipForm = () => {
     const { register, handleSubmit } = useForm();
     // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
-    const { user, loading } = useAuth() || {}
+    const { user } = useAuth() || {}
+    const [dates, setDates] = useState({
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection'
+    });
+    console.log(dates.endDate);
+    const handleDates = item => {
+        setDates(item.selection)
+    }
 
     const onSubmit = async data => {
         const image_url = await imageUpload(data.image[0])
@@ -29,7 +42,7 @@ const AddScholarShipForm = () => {
             TuitionFees: data.TuitionFees,
             ApplicationFees: data.ApplicationFees,
             ServiceCharge: data.ServiceCharge,
-            ApplicationDeadline: data.ApplicationDeadline,
+            ApplicationDeadline:dates.endDate,
             postDate: new Date,
             PostedBy: user?.email,
 
@@ -224,8 +237,16 @@ const AddScholarShipForm = () => {
                         <label htmlFor="Application-Deadline" className="label">
                             <span className="label-text">Application Deadline</span>
                         </label>
-                        <input type="number" placeholder="type  Service charge" name="University-Name" id="text" className="input input-bordered" required
-                            {...register("ApplicationDeadline",)} />
+                        <DateRange
+                        //  {...register("[dates]",)}
+                                showDateDisplay={false}
+                                rangeColors={['#F6536D']}
+                                editableDateInputs={true}
+                                onChange={item => handleDates(item)}
+                                moveRangeOnFirstSelection={false}
+                                ranges={[dates]}
+                            />
+                        
                     </div>
 
 

@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail }
       setUser(currentUser)
       
-      console.log(currentUser?.displayName);
+    
     
       if (currentUser) {
         saveUser(currentUser)

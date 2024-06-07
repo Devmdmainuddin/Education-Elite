@@ -8,6 +8,7 @@ import ContactUs from "../contactus/ContactUs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Testimonial from "../../components/pages/Testimonial";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -18,6 +19,9 @@ const Home = () => {
   
     return (
         <div>
+             <Helmet>
+                <title>Education Elite | Home </title>
+            </Helmet>
             <Container>
                 <Carousel></Carousel>
                 <div className="text-center">
