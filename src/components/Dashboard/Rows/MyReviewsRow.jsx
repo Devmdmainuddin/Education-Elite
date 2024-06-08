@@ -19,7 +19,7 @@ const MyReviewsRow = ({ review, handleDelete,isLoading,refetch }) => {
             return data
         },
         onSuccess: data => {
-            console.log(data)
+            // console.log(data)
              refetch()
             toast.success('user role update successfully')
             setIsOpen(false)

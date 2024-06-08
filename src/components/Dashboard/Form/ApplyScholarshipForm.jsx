@@ -3,6 +3,7 @@ import { imageUpload } from "../../../utils";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
+import PropTypes from 'prop-types'
 
 const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, ScholarshipCategory, SubjectCategorey, id }) => {
     const { register, handleSubmit } = useForm();
@@ -37,7 +38,7 @@ const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, Scholarsh
             scholarshipID: id,
 
         }
-        console.log(applyShipItem);
+       
 
         try {
             const { data } = await axiosSecure.post(`/applyScholarShip`, applyShipItem)
@@ -230,5 +231,13 @@ const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, Scholarsh
         </div>
     );
 };
+ApplyScholarshipForm.propTypes = {
+    id: PropTypes.string,
+    SubjectCategorey: PropTypes.string,
+    ScholarshipName: PropTypes.string,
+    UniversityName: PropTypes.string,
+    ScholarshipCategory: PropTypes.string,
+    total: PropTypes.number
+}
 
 export default ApplyScholarshipForm;

@@ -30,20 +30,20 @@ const useAddReviews = () => {
         const form = e.target;
         const rating = form.rating.value
         const comments = form.Comments.value
-        const sholarshipId = sholarship._id;
-        const sholarshipName = sholarship.ScholarshipName;
-        const sholarshipUniversity = sholarship.UniversityName;
-        const sholarshipcategory = sholarship.ScholarshipCategory;
+        // const sholarshipId = sholarship._id;
+        // const sholarshipName = sholarship.ScholarshipName;
+        // const sholarshipUniversity = sholarship.UniversityName;
+        // const sholarshipcategory = sholarship.ScholarshipCategory;
         const reviewerImage = user?.photoURL
         const reviewerName = user?.displayName;
         const reviewerEmail = user?.email;
         const reviewDate = (new Date()).toDateString();
 
         const reviewData = {
-            sholarshipName,
-            sholarshipId,
-            sholarshipUniversity,
-            sholarshipcategory,
+            // sholarshipName,
+            // sholarshipId,
+            // sholarshipUniversity,
+            // sholarshipcategory,
             rating,
             comments,
             reviewerImage,

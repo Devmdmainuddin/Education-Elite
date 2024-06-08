@@ -25,7 +25,7 @@ const MyApplyRow = ({apply,handleDelete,isPending,refetch}) => {
             return data
         },
         onSuccess: data => {
-            console.log(data)
+           
             refetch()
             toast.success('user role update successfully')
             setIsOpen(false)

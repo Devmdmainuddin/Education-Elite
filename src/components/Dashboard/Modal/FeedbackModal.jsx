@@ -22,7 +22,7 @@ const FeedbackModal = ({ setOpenFeedback, openFeedback, id, refetch }) => {
             return data
         },
         onSuccess: data => {
-            console.log(data)
+
             refetch()
             Swal.fire({
                 position: "top-end",

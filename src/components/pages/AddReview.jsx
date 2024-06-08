@@ -20,7 +20,7 @@ const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAdd
                 timer: 1500
             });
             setAddReview(false)
-            console.log("data add successfully")
+            // console.log("data add successfully")
         }
     })
 
@@ -53,7 +53,7 @@ const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAdd
         };
 
         try {
-            console.log(reviewData);
+            // console.log(reviewData);
             await mutateAsync(reviewData)
             form.reset()
         }

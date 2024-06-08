@@ -5,11 +5,6 @@ import PropTypes from 'prop-types'
 
 const UpdateApplyInfo = ({ setIsOpen, isOpen, modalHandler, universityName }) => {
 
-    // const universityName = ['user', 'moderator', 'admin']
-    // const subjectCategorey = ['user', 'moderator', 'admin']
-    // const degree = ['user', 'moderator', 'admin']
-
-
 
     return (
         <Transition appear show={isOpen} as={Fragment}>

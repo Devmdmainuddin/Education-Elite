@@ -63,11 +63,8 @@ const EditScholarShipForm = () => {
             ApplicationDeadline:dates.endDate,
            
         }
-        console.log(ScholarShipItem);
+    
 
-       
-
-        //    console.log(updateData);
         try {
             await mutateAsync(ScholarShipItem)
         }

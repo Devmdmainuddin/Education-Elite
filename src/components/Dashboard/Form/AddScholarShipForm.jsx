@@ -17,7 +17,6 @@ const AddScholarShipForm = () => {
         endDate: new Date(),
         key: 'selection'
     });
-    console.log(dates.endDate);
     const handleDates = item => {
         setDates(item.selection)
     }
@@ -44,11 +43,9 @@ const AddScholarShipForm = () => {
             PostedBy: user?.email,
 
         }
-        console.log(ScholarShipItem);
-
         try {
             const { data } = await axiosSecure.post(`/addScholarShip`, ScholarShipItem)
-            console.log(data)
+          
             if (data.insertedId) {
                 Swal.fire({
                     position: "top-end",
@@ -61,7 +58,7 @@ const AddScholarShipForm = () => {
 
         }
         catch (err) {
-            console.log(err)
+        
             Swal.fire({
                 position: "top-end",
                 icon: "error",

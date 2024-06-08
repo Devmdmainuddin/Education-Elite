@@ -49,9 +49,9 @@ const ChackoutForm = ({total,id,ScholarshipName,UniversityName,ScholarshipCatego
 
     if (error) {
       setError(error.message)
-      console.log('[error]', error);
+      // console.log('[error]', error);
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      // console.log('[PaymentMethod]', paymentMethod);
       setError('')
     }
 

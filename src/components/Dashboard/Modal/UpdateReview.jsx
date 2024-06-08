@@ -2,7 +2,7 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment } from "react";
 import { IoClose } from "react-icons/io5";
-
+import PropTypes from 'prop-types';
 
 const UpdateReview = ({ setIsOpen, isOpen,rating, comment,modalHandler }) => {
 
@@ -91,5 +91,12 @@ const UpdateReview = ({ setIsOpen, isOpen,rating, comment,modalHandler }) => {
     </Transition>
     );
 };
-
+UpdateReview.propTypes = {
+    comment: PropTypes.string,
+    rating: PropTypes.string,
+    modalHandler: PropTypes.func,
+    setIsOpen: PropTypes.func,
+    isOpen: PropTypes.bool
+  };
+//   setIsOpen, isOpen,rating, comment,modalHandler
 export default UpdateReview;
