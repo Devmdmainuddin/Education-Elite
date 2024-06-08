@@ -11,7 +11,7 @@ import DetailsModal from "../Modal/DetailsModal";
 
 
 const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
-  const { _id, ScholarshipName, SubjectCategorey, universityName, Degree, applicationfees, status } = scholarship
+  const { _id, ScholarshipName, SubjectCategorey, universityName, Degree, applicationfees, Status} = scholarship
   const [isOpen, setIsOpen] = useState(false)
   const [detailsModal, setDetailsModal] = useState(false)
   const [openFeedback, setOpenFeedback] = useState(false)
@@ -41,7 +41,7 @@ const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
   })
   const handleDelet = () => {
     const userRole = {
-      status: "rejected",
+      Status: "rejected",
 
     }
     Swal.fire({
@@ -87,13 +87,13 @@ const ApplyScholearshipsRow = ({ scholarship, refetch }) => {
             className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
           ></span>
           <div className="flex relative gap-x-2 items-center">
-            <span className='relative'>{status}</span>
+            <span className='relative'>{Status}</span>
             <span className='relative'><FaRegEdit></FaRegEdit></span>
           </div>
 
         </button>
         {/* Update User Modal */}
-        <UpdateApplyModal isOpen={isOpen} setIsOpen={setIsOpen} id={_id} refetch={refetch} stat={status} ></UpdateApplyModal>
+        <UpdateApplyModal isOpen={isOpen} setIsOpen={setIsOpen} id={_id} refetch={refetch} Status={Status} ></UpdateApplyModal>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
 

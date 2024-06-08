@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import Swal from 'sweetalert2'
+import { RiDeleteBinLine } from 'react-icons/ri'
 const UserDataRow = ({ user, refetch}) => {
   const [isOpen, setIsOpen] = useState(false)
   const axiosSecure = useAxiosSecure()
@@ -104,10 +105,10 @@ const UserDataRow = ({ user, refetch}) => {
           ></span>
           <span className='relative'>Update Role</span>
         </button>
-        {/* Update User Modal */}
+       
         <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen} modalHandler={modalHandler} user={user}></UpdateUserModal>
      <button onClick={()=>handleDelet(user._id)} className='cursor-pointer inline-block px-3 py-1 bg-red-200  rounded-full font-semibold text-red-900 leading-tight'>
-        delete
+     <RiDeleteBinLine />
      </button>
      </td>
     </tr>

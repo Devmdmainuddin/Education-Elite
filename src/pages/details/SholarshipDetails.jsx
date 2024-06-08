@@ -1,16 +1,12 @@
 import { Helmet } from "react-helmet-async";
-// import { FaCaravan, FaCartArrowDown } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
-// import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-// import useReviews from "../../hooks/useReviews";
 import {  useState } from "react";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -21,14 +17,7 @@ const SholarshipDetails = () => {
     const [dataLength, setDataLength] = useState(6);
     const { user } = useAuth() || {}
     const axiosSecure = useAxiosSecure()
-    // const [reviews, loading, refetch] = useReviews()
     const sholarship = useLoaderData();
-    // const [userReview, setuserReview] = useState([])
-
-    // useEffect(() => {
-    //     const filteritems = reviews.filter(p => p.sholarshipId == sholarship._id)  
-    //     setuserReview(filteritems) 
-    // }, [reviews,sholarship,])
 
     const { data: review = [], isPending:loading, refetch } = useQuery({
         queryKey: ['review'],
@@ -101,7 +90,7 @@ const SholarshipDetails = () => {
 
     if (loading) return <LoadingSpinner />
     return (
-        <div>
+        <div className="max-w-[1420px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
             <Helmet>
                 <title>Education Elite | SholarshipDetails </title>
             </Helmet>
@@ -113,12 +102,7 @@ const SholarshipDetails = () => {
                             <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                                 <img className="w-full h-full object-cover" src={sholarship.image} alt="Product Image" />
                             </div>
-                            <div className="flex -mx-2 mb-4 justify-center">
-                                <div className="w-1/2 px-2">
-                                    <Link to={`/chackout/${sholarship._id}`}> <button className="inline-block w-full rounded bg-teal-500 mt-4 px-4 py-3 text-sm font-medium text-white transition  focus:outline-none focus:ring active:bg-indigo-500">Apply Scholarship</button> </Link>
-                                </div>
-
-                            </div>
+                            
                         </div>
                         <div className="md:flex-1 px-4">
                             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{sholarship.ScholarshipName}</h2>
@@ -166,6 +150,12 @@ const SholarshipDetails = () => {
                                     <span className="font-bold text-gray-700 flex gap-x-2 items-center dark:text-gray-300">ServiceCharge : <p className="text-sm text-gray-600">{sholarship.ServiceCharge}$</p> </span>
                                 </div>
                                 
+                            </div>
+                            <div className="flex -mx-2 mb-4 ">
+                                <div className="w-1/2 px-2">
+                                    <Link to={`/chackout/${sholarship._id}`}> <button className="inline-block w-full rounded bg-teal-500 mt-4 px-4 py-3 text-sm font-medium text-white transition  focus:outline-none focus:ring active:bg-indigo-500">Apply Scholarship</button> </Link>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -222,7 +212,7 @@ const SholarshipDetails = () => {
             {/* ......................show review....................... */}
 
             <Swiper
-                //  direction={'vertical'}
+               
                 loop={true}
                 slidesPerView={1}
                 spaceBetween={1}
@@ -245,7 +235,7 @@ const SholarshipDetails = () => {
                     disableOnInteraction: false,
                 }}
                 modules={[Pagination, Autoplay]}
-                className="Swiper h-[442px]  w-full "
+                className="Swiper   w-full "
             >
                 {
                     review.slice(0, dataLength).map(review =><SwiperSlide key={review._id} className='flex justify-center items-center gap-x-4'>
@@ -260,7 +250,11 @@ const SholarshipDetails = () => {
                                 <div className="pl-4 pt-4 flex items-start justify-between">
                                     <div className="mr-6">
                                         <p className="xl:text-xl xl:leading-loose text-gray-600">{review.comments}</p>
+                                        <div className="flex justify-between">
                                         <p className="mt-4 text-base font-semibold leading-none text-gray-800">{review.reviewerName}</p>
+                                        <p className="mt-4 text-base font-semibold leading-none text-gray-800">{review.reviewDate}</p>
+                                        </div>
+                                       
                                     </div>
                                     <img src={review.reviewerImage} className="w-10 rounded-full"  alt="Display Avatar of Anna Smith" role="img" />
                                 </div>

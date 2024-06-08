@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 import { Helmet } from "react-helmet-async";
 
  import Scholarship from "../components/pages/Scholarship";
+import useAxiosCommon from "../hooks/useAxiosCommon";
 const AllScholarship = () => {
     const [itemsperpage, setitemsperpage] = useState(6)
     const [counts, setCounts] = useState(0)
@@ -15,26 +16,28 @@ const AllScholarship = () => {
     const [searchText, setSearchText] = useState('')
     const pages = [...Array(numberofPage).keys()]
     const [items, setitems] = useState([])
+    const axiosCommon = useAxiosCommon()
 
     useEffect(() => {
 
         const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/allScholarship?page=${currentPage}&size=${itemsperpage}&filter=${filter}&sort=${sort}&search=${search}`)
+            const { data } = await axiosCommon(`/allScholarship?page=${currentPage}&size=${itemsperpage}&filter=${filter}&sort=${sort}&search=${search}`)
             setitems(data)
+            
         }
         getData()
     
-    }, [currentPage, itemsperpage, filter, sort, search])
+    }, [currentPage,axiosCommon, itemsperpage, filter, sort, search])
 
     useEffect(() => {
         const getCount = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/ScholarshipCount?filter=${filter}&search=${search}`
+            const { data } = await axiosCommon(`/ScholarshipCount?filter=${filter}&search=${search}`
             )
-            
+          
             setCounts(data.count)
         }
         getCount()
-    }, [filter, search])
+    }, [filter,axiosCommon, search])
 
 
     const handleItemsPerPage = e => {
@@ -66,15 +69,15 @@ const AllScholarship = () => {
     }
 
     return (
-        <div className="mt-4">
+        <div className="mt-4 max-w-[1420px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
         <Helmet>
             <title>Education-Elite | all scholarship </title>
         </Helmet>
 
         <div className="text-center">
-            <h3 className="text-2xl font-bold text-teal-500">Our Queries</h3>
-            <h2 className="text-5xl">Our Queries Area</h2>
-            <p>Product Information Management  centralizes and manages product data </p>
+           
+            <h2 className="text-5xl capitalize">all scholarship</h2>
+            <p className="mt-3 w-1/2 mx-auto">From educators to nonprofit professionals, the Event Scholarship Program provides a unique opportunity for leaders to further enhance their skills </p>
 
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center gap-5 mt-6'>
@@ -145,7 +148,7 @@ const AllScholarship = () => {
         </div>
 
  {/* <div id="gridLayout" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"> */}
-        <div id="gridLayout" className="grid grid-cols-3 gap-6 mt-12">
+        <div id="gridLayout" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
 
             {
                 items.map(item => <Scholarship

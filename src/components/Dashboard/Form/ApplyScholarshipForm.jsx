@@ -224,7 +224,7 @@ const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, Scholarsh
 
 
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary">add items</button>
+                    <button className="btn bg-[#9ff4c5] capitalize">Apply Scholarship</button>
                 </div>
             </form>
         </div>

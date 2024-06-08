@@ -20,16 +20,16 @@ const Testimonial = () => {
     if (loading) return <LoadingSpinner />
     //    const {reviewerImage,reviewerName,reviewerEmail,reviewDate,rating,comments,sholarshipName,sholarshipUniversity}=reviews
     return (
-        <div className="py-16 bg-gray-50">
+        <div className="py-16 ">
 
-
-            <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="">
-                    <h1 className="text-2xl  md:text-4xl xl:text-5xl font-semibold leading-10   text-gray-800 xl:w-2/3 pr-16 lg:pr-0">Our student love what we do</h1>
-                    <p className="mt-4 text-base leading-normal text-gray-600 md:w-2/3 lg:w-3/4 pr-6 lg:pr-0">Over 500 companies use our product to understand their business and marketing better.</p>
+{/* grid grid-cols-1 md:grid-cols-2 gap-6 */}
+            <div className=" flex justify-between flex-col md:flex-row">
+                <div className=" w-full md:w-1/3">
+                    <h1 className="text-4xl font-semibold leading-10   text-gray-800  pr-16 lg:pr-0">Our student love what we do</h1>
+                    <p className="mt-4 text-base leading-normal text-gray-600  pr-6 lg:pr-0">Our platform makes it fun and easy to apply for scholarships, and helps students focus on scholarships they have the best chance of winning.</p>
                     <button className=" px-8 py-4 mt-4 bg-teal-500 hover:teal-400 rounded text-base font-medium leading-none text-center text-white">Read success stories</button>
                 </div>
-                <div className="">
+                <div className=" w-full md:w-2/3">
                     <Swiper
                         // direction={'vertical'}
                         loop={true}

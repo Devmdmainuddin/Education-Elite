@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import MenuItem from "./bashboard/Menu/MenuItem";
 import ModeratorMenu from './bashboard/Menu/ModeratorMenu'
-// import { BsGraphUp } from "react-icons/bs";
-import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
@@ -11,43 +8,47 @@ import AdminMenu from './bashboard/Menu/AdminMenu'
 import useRole from "../hooks/useRole";
 import logo from'../assets/logo-12.png'
 import LoadingSpinner from "../components/Shared/LoadingSpinner";
+import { AiOutlineBars } from "react-icons/ai";
 
 const Sidebar = () => {
     const { logOut } = useAuth()
-    const [isActive,] = useState(false)
+    const [isActive, setActive] = useState(false)
     const [role, isloading] = useRole()
-    // console.log(role, isloading)
     if (isloading) return <LoadingSpinner />
+
+    const handleToggle = () => {
+      setActive(!isActive)
+    }
     return (
         <>
-        {/* Small Screen Navbar */}
+      
         <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
           <div>
             <div className='block cursor-pointer p-4 font-bold'>
-              <Link to='/'>
+              <Link to='/' className="flex items-center">
                 <img
-                  // className='hidden md:block'
-                  // src='https://i.ibb.co/4ZXzmq5/logo.png'
                   src={logo}
                   alt='logo'
-                  width='100'
-                  height='100'
+                  width='60'
+                  height='60'
+                 className="rounded-full"
                 />
+                Education-Elite
               </Link>
             </div>
           </div>
   
-          {/* <button
-            onClick={handleToggle}
+          <button
+         onClick={handleToggle}
             className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
           >
             <AiOutlineBars className='h-5 w-5' />
-          </button> */}
+          </button>
         </div>
   
         {/* Sidebar */}
         <div
-          className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
+          className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-12  md:space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
             }  md:translate-x-0  transition duration-200 ease-in-out`}
         >
           <div>

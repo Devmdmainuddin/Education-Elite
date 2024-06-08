@@ -1,33 +1,17 @@
 import { Helmet } from 'react-helmet-async'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useAuth from '../../../hooks/useAuth'
-// import { useQuery } from '@tanstack/react-query'
 import UserDataRow from '../../../components/Dashboard/Rows/UserDataRow'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import {  useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-// import axios from 'axios'
 
 const ManageUsers = () => {
   const { loading } = useAuth()
   const [filter, setFilter] = useState('')
   const [sort, setSort] = useState('')
-  // const [items, setitems] = useState([])
+
   const axiosSecure = useAxiosSecure()
-
-
-
-  // useEffect(() => {
-
-  //   const getData = async () => {
-  //     const { data } = await axiosSecure.get(`/filteruser?filter=${filter}&sort=${sort}`)
-  //     setitems(data)
-  //   }
-  //   getData()
-
-  // }, [filter, sort, axiosSecure])
-
-
 
   const {data: filteruser = [],isLoading,refetch} = useQuery({
     queryKey: ['filteruser',filter,sort],
@@ -124,7 +108,7 @@ const ManageUsers = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>{/* User data table row */}
+                <tbody>
                   {filteruser.map(user => <UserDataRow key={user?._id} user={user} refetch={refetch} ></UserDataRow>)}
                 </tbody>
               </table>

@@ -86,7 +86,7 @@ const AdminHomeRechart = () => {
                   </div>
               </div>
             </div>
-             <div className="flex">
+             <div className="flex flex-col md:flex-row">
                 <div className="w-1/2">
                     <BarChart
                         width={500}
@@ -102,7 +102,7 @@ const AdminHomeRechart = () => {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="category" />
                         <YAxis/>
-                        <Bar dataKey="Revenue" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                        <Bar dataKey="quantity" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                             {chartData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={colors[index % 6]} />
                             ))}

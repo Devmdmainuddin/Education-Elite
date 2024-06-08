@@ -59,7 +59,8 @@ const ContactUs = () => {
         <section className="bg-white dark:bg-gray-900 max-w-[1200px] mx-auto">
            
             <div className="container px-6 py-12 mx-auto">
-                <div className="lg:flex lg:items-center lg:-mx-6">
+            <h2 className="text-center text-3xl"> Contact us </h2>
+                <div className="lg:flex lg:items-center justify-center lg:-mx-6">
                     <div className="lg:w-1/2 lg:mx-6">
                         <h1 className="text-2xl font-semibold text-gray-800 capitalize dark:text-white lg:text-3xl">
                         more info
@@ -131,8 +132,8 @@ const ContactUs = () => {
                     <div className="mt-8 lg:w-1/2 lg:mx-6">
                         <div
                             className="w-full px-8 py-10 mx-auto overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-900 lg:max-w-xl shadow-gray-300/50 dark:shadow-black/50">
-                           <h2> Contact us </h2>
-                            <h1 className="text-lg font-medium text-gray-700">What do you want to ask</h1>
+                          
+                            <h1 className="text-lg font-medium text-gray-700 text-center">What do you want to ask</h1>
 
                             <form className="mt-6" onSubmit={handlesubmit}>
                                 <div className="flex-1">
@@ -158,7 +159,7 @@ const ContactUs = () => {
                                     <textarea name="message" className="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Message"></textarea>
                                 </div>
 
-                                <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#61cbc7] rounded-md hover:bg-[#65dbf8] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     get in touch
                                 </button>
                             </form>

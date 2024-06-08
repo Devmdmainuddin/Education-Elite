@@ -17,10 +17,10 @@ import Swal from 'sweetalert2'
 import { useMutation } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
-const status = ['pending', 'processing', 'completed']
+const Stat= ['pending', 'processing', 'completed']
 
-const UpdateApplyModal = ({ setIsOpen, isOpen, stat, id, refetch }) => {
-  const [selected, setSelected] = useState(stat)
+const UpdateApplyModal = ({ setIsOpen, isOpen, Status, id, refetch }) => {
+  const [selected, setSelected] = useState(Status)
 
   const axiosSecure = useAxiosSecure()
 
@@ -49,7 +49,7 @@ const UpdateApplyModal = ({ setIsOpen, isOpen, stat, id, refetch }) => {
   const modalHandler = async selected => {
 
     const userRole = {
-      status: selected,
+      Status: selected,
 
     }
     try {
@@ -118,7 +118,7 @@ const UpdateApplyModal = ({ setIsOpen, isOpen, stat, id, refetch }) => {
                         leaveTo='opacity-0'
                       >
                         <ListboxOptions className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm'>
-                          {status.map((role, roleIdx) => (
+                          {Stat.map((role, roleIdx) => (
                             <ListboxOption
                               key={roleIdx}
                               className='relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900 data-[focus]:bg-amber-100  data-[focus]:text-amber-900'
@@ -183,6 +183,7 @@ UpdateApplyModal.propTypes = {
   isOpen: PropTypes.bool,
   id: PropTypes.string,
   refetch: PropTypes.func,
+  Status: PropTypes.string,
 }
 
 export default UpdateApplyModal;

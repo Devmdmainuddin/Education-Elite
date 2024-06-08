@@ -10,7 +10,6 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const AddScholarShipForm = () => {
     const { register, handleSubmit } = useForm();
-    // const categorey = useCategorey();
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth() || {}
     const [dates, setDates] = useState({
@@ -29,8 +28,6 @@ const AddScholarShipForm = () => {
             ScholarshipName: data.ScholarshipName,
             UniversityName: data.UniversityName,
             image: image_url,
-            // Country: data.Country,
-            // city: data.city,
             location: {
                 Country: data.Country,
                 city: data.city,
@@ -43,7 +40,7 @@ const AddScholarShipForm = () => {
             ApplicationFees: data.ApplicationFees,
             ServiceCharge: data.ServiceCharge,
             ApplicationDeadline:dates.endDate,
-            postDate: new Date,
+            postDate: new Date(),
             PostedBy: user?.email,
 
         }
@@ -238,7 +235,7 @@ const AddScholarShipForm = () => {
                             <span className="label-text">Application Deadline</span>
                         </label>
                         <DateRange
-                        //  {...register("[dates]",)}
+                        
                                 showDateDisplay={false}
                                 rangeColors={['#F6536D']}
                                 editableDateInputs={true}

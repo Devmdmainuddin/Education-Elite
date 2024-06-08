@@ -25,7 +25,7 @@ const MyApplication = () => {
         return data
     },
     onSuccess: data => {
-      console.log(data);
+   
       refetch()
       Swal.fire({
         position: "top-end",
@@ -38,6 +38,7 @@ const MyApplication = () => {
 })
 
 const handleDelete = async id => {
+
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",

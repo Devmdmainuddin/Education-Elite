@@ -9,30 +9,32 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Testimonial from "../../components/pages/Testimonial";
 import { Helmet } from "react-helmet-async";
+import Partners from "../../components/pages/Partners";
+import AdditionalInfo from "../../components/pages/AdditionalInfo";
 
 
 
 const Home = () => {
     const [dataLength, setDataLength] = useState(6);
-  const [allScholarShip] =useScholearShips()
+    const [allScholarShip] = useScholearShips()
 
-  
+
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title>Education Elite | Home </title>
             </Helmet>
             <Container>
                 <Carousel></Carousel>
-                <div className="text-center">
-                    <h3 className="text-2xl font-bold text-teal-500">Our Queries</h3>
-                    <h2 className="text-5xl">Our Queries Area</h2>
-                    <p>Product Information Management  centralizes and manages product data </p>
+                <div className="text-center ">
+
+                    <h2 className="text-3xl mt-12">Top Scholarship</h2>
+                    <p className="mt-3 w-1/2 mx-auto">From educators to nonprofit professionals, the Event Scholarship Program provides a unique opportunity for leaders to further enhance their skills </p>
 
                 </div>
-               
-                <div id="gridLayout" className="grid grid-cols-3 gap-6 mt-12">
-                 
+
+                <div id="gridLayout" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+
                     {
                         allScholarShip.slice(0, dataLength).map(item => <ScholarshipItems
                             key={item._id}
@@ -43,14 +45,15 @@ const Home = () => {
 
                 </div>
                 <div className="flex justify-center items-center">
-                <Link to='/allscholarship' className="py-2 px-6 bg-green-300 rounded inline-block mx-auto  text-center mt-8"> show all </Link>
+                    <Link to='/allscholarship' className="py-2 px-6 bg-green-300 rounded inline-block mx-auto  text-center mt-8 capitalize"> show all </Link>
                 </div>
-               
-<div>
-    <ContactUs></ContactUs>
-</div>
-<Testimonial></Testimonial>
+                <AdditionalInfo></AdditionalInfo>
+                <div>
+                    <ContactUs></ContactUs>
+                </div>
+                <Testimonial></Testimonial>
 
+                <Partners></Partners>
             </Container>
 
         </div>

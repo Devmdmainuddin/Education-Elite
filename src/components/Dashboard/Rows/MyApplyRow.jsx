@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 // import { Link } from "react-router-dom";
 import AddReviewModal from "../Modal/AddReviewModal";
+import Swal from "sweetalert2";
 
 const MyApplyRow = ({apply,handleDelete,isPending,refetch}) => {
     const {universityName,
@@ -34,6 +35,7 @@ const MyApplyRow = ({apply,handleDelete,isPending,refetch}) => {
 
 
     const modalHandler = async e => {
+       
         e.preventDefault()
         const form = e.target
         const universityName= form.universityName.value
@@ -47,7 +49,18 @@ const MyApplyRow = ({apply,handleDelete,isPending,refetch}) => {
             Degree:Degree,
         }
         try {
-            await mutateAsync(data)
+            if(Status === 'pending'){
+                await mutateAsync(data)
+            }else{
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Your items not  Edit your application in processing",
+                    showConfirmButton: false,
+                    timer: 1500
+                }); 
+            }
+           
         } catch (err) {
             console.log(err.message);
             toast.error(err.message)
