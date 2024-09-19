@@ -30,7 +30,7 @@ const UpdateApplyModal = ({ setIsOpen, isOpen, Status, id, refetch }) => {
       return data
     },
     onSuccess: data => {
-      console.log(data)
+      // console.log(data)
       refetch()
       Swal.fire({
         position: "top-end",

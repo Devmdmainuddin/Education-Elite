@@ -20,7 +20,7 @@ const useAddReviews = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            console.log("data add successfully")
+            // console.log("data add successfully")
         }
     })
 
@@ -53,12 +53,12 @@ const useAddReviews = () => {
         };
 
         try {
-            console.log(reviewData);
+            // console.log(reviewData);
             await mutateAsync(reviewData)
             form.reset()
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 

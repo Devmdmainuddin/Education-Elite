@@ -62,7 +62,7 @@ const MyApplyRow = ({apply,handleDelete,isPending,refetch}) => {
             }
            
         } catch (err) {
-            console.log(err.message);
+            // console.log(err.message);
             toast.error(err.message)
         }
     }

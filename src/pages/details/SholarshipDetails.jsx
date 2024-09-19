@@ -45,7 +45,7 @@ const SholarshipDetails = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            console.log("data add successfully")
+          
         }
     })
 
@@ -78,7 +78,7 @@ const SholarshipDetails = () => {
         };
 
         try {
-            console.log(reviewData);
+          
             refetch()
             await mutateAsync(reviewData)
             form.reset()

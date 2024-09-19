@@ -17,6 +17,7 @@ const Navbar = () => {
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
             {/* Logo */}
             <div className='flex justify-center items-center'>
+             
             <Link to='/' className='flex justify-center items-center'>
               <img
                 // className='hidden md:block'

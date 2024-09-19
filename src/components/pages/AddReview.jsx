@@ -58,7 +58,7 @@ const AddReview = ({id,ScholarshipName,universityName,scholarshipcategory,setAdd
             form.reset()
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 

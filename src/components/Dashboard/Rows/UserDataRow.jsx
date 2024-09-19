@@ -34,7 +34,7 @@ const UserDataRow = ({ user, refetch}) => {
       refetch()
        await mutateAsync(userRole) 
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
       toast.error(err.message)
     }
   }

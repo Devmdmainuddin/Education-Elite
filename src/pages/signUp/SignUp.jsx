@@ -17,14 +17,6 @@ const SignUp = () => {
   const navigate = useNavigate()
   const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useAuth()
 
-
-
-
-  // axiosCommon.put(`/user`, userinfo)
-  //   .then(res => {
-
-  //   })
-
   const handleSubmit = async e => {
     e.preventDefault()
 

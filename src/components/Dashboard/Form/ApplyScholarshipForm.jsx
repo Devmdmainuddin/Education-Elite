@@ -42,7 +42,7 @@ const ApplyScholarshipForm = ({ UniversityName,ScholarshipName, total, Scholarsh
 
         try {
             const { data } = await axiosSecure.post(`/applyScholarShip`, applyShipItem)
-            console.log(data)
+            // console.log(data)
             if (data.insertedId) {
                 Swal.fire({
                     position: "top-end",

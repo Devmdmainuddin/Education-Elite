@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 const Chackout = () => {
     const items = useLoaderData()
     const {user}= useAuth()
+    
     const { TuitionFees, ApplicationFees, ServiceCharge,ScholarshipName
 ,        _id, UniversityName, ScholarshipCategory, SubjectCategorey } = items
     const total = parseInt(TuitionFees) + parseInt(ApplicationFees) + parseInt(ServiceCharge)

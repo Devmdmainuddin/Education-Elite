@@ -40,7 +40,7 @@ const MyReviewsRow = ({ review, handleDelete,isLoading,refetch }) => {
         try {
             await mutateAsync(data)
         } catch (err) {
-            console.log(err.message);
+            // console.log(err.message);
             toast.error(err.message)
         }
     }
